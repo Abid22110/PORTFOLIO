@@ -288,8 +288,12 @@
           </div>
         </div>
 
-        <!-- Email + Message; direct service send if configured, otherwise Gmail compose -->
+        <!-- Name + Email + Message -> direct Gmail compose -->
         <form class="contact-form" data-aos="fade-left" id="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
           <div class="form-group">
             <label for="email">Your Email</label>
             <input type="email" id="email" name="email" placeholder="your@email.com" required>
@@ -299,7 +303,7 @@
             <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
           </div>
           <button type="submit" class="btn">Send Message</button>
-          <p class="form-note">Tip: For direct delivery without opening Gmail, set your form endpoint in js/script.js.</p>
+          <p class="form-note">This opens Gmail compose to send directly to Abid’s email.</p>
         </form>
       </div>
     </section>
