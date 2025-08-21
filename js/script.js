@@ -1,44 +1,65 @@
 // ========= Config: Certificates =========
-// Add your certificates here. Just push an object with title and src.
-// Make sure the image exists in assets/images/.
+// Start with existing certificate(s). Add more by pushing {title, src} below.
 const CERTS = [
-  { title: 'Pitman Training — CPD (Computer Basics)', src: 'assets/images/certificate.jpeg' },
-  { title: 'Basic Computer Course', src: 'assets/images/cert-basic-computer.jpeg' },   // add this image
-  { title: 'Google Course', src: 'assets/images/cert-google-course.jpeg' }             // add this image
+  { title: 'Pitman Training — CPD (Computer Basics)', src: 'assets/images/certificate.jpeg' }
+  // Example to add later:
+  // { title: 'Basic Computer Course', src: 'assets/images/cert-basic-computer.jpeg' },
+  // { title: 'Google Course', src: 'assets/images/cert-google-course.jpeg' }
 ];
 
 // ========= AOS =========
-AOS.init({ duration: 650, once: true, offset: 80 });
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.AOS) AOS.init({ duration: 650, once: true, offset: 80 });
+});
 
-// ========= Theme (Hacker / Light) =========
+// ========= Theme (Hacker / Light) + Reset =========
 (function themeInit() {
-  const select = document.getElementById('theme-select');
-  const saved = localStorage.getItem('theme') || 'hacker';
-  document.documentElement.setAttribute('data-theme', saved);
-  if (select) select.value = saved;
+  const buttons = document.querySelectorAll('.theme-btn');
+  const resetBtn = document.getElementById('theme-reset');
+  const overlayCanvas = document.getElementById('matrix');
 
-  function apply(mode) {
+  const saved = localStorage.getItem('theme') || 'hacker';
+  applyTheme(saved);
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-theme');
+      applyTheme(mode);
+      buttons.forEach(b => b.classList.toggle('active', b === btn));
+    });
+    // init active state
+    const mode = btn.getAttribute('data-theme');
+    if (mode === saved) btn.classList.add('active');
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    localStorage.removeItem('theme');
+    applyTheme('hacker');
+    buttons.forEach(b => b.classList.toggle('active', b.getAttribute('data-theme') === 'hacker'));
+  });
+
+  function applyTheme(mode) {
     document.documentElement.setAttribute('data-theme', mode);
     localStorage.setItem('theme', mode);
-    // Toggle matrix effect visibility
+    // Toggle matrix effect
     if (mode === 'hacker') MatrixRain.start(); else MatrixRain.stop();
+    if (overlayCanvas) overlayCanvas.style.display = mode === 'hacker' ? 'block' : 'none';
   }
-
-  select?.addEventListener('change', () => apply(select.value));
-  apply(saved);
 })();
 
-// ========= Mobile nav + anchors =========
+// ========= Mobile nav + overlay (prevents background mixing) =========
 (function navToggle() {
   const btn = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
-  if (!btn || !links) return;
+  const overlay = document.querySelector('.nav-overlay');
+  if (!btn || !links || !overlay) return;
 
-  btn.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-  document.addEventListener('click', (e) => {
-    if (!links.contains(e.target) && !btn.contains(e.target)) links.classList.remove('open');
-  });
+  const close = () => { links.classList.remove('open'); overlay.classList.remove('show'); };
+  const open = () => { links.classList.add('open'); overlay.classList.add('show'); };
+
+  btn.addEventListener('click', () => links.classList.contains('open') ? close() : open());
+  overlay.addEventListener('click', close);
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
 })();
 
 // ========= Back to top =========
@@ -84,7 +105,7 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   items.forEach(i => io.observe(i));
 })();
 
-// ========= Certificates grid + modal =========
+// ========= Certificates grid + modal (no auto-open) =========
 (function certificates() {
   const grid = document.getElementById('cert-grid');
   if (!grid) return;
@@ -96,7 +117,7 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
     card.className = 'cert-card';
     card.setAttribute('data-index', String(idx));
     card.innerHTML = `
-      <img class="cert-thumb" src="${c.src}" alt="${c.title} thumbnail" loading="lazy" decoding="async">
+      <img class="cert-thumb" src="${c.src}" alt="${c.title} thumbnail" loading="lazy" decoding="async" referrerpolicy="no-referrer">
       <div class="cert-body">
         <p class="cert-title">${c.title}</p>
         <span class="cert-view">View</span>
@@ -110,6 +131,8 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   const modal = document.getElementById('cert-modal');
   const title = document.getElementById('cert-title');
   const image = document.getElementById('cert-image');
+  const openBtn = document.getElementById('cert-open');
+  const downloadBtn = document.getElementById('cert-download');
   const closeBtn = modal?.querySelector('.cert-modal__close');
 
   function open(idx) {
@@ -118,6 +141,8 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
     title.textContent = c.title;
     image.src = c.src;
     image.alt = c.title;
+    openBtn.href = c.src;
+    downloadBtn.href = c.src;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -149,14 +174,10 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
     e.preventDefault();
     const message = (document.getElementById('message')?.value || '').trim();
     const subject = encodeURIComponent('Portfolio Inquiry');
-    const body = encodeURIComponent(message);
-
-    // Prefer Gmail compose (web/app), fallback to mailto
+    const body = encodeURIComponent(message || '(No message)');
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(TO)}&su=${subject}&body=${body}`;
     const opened = window.open(gmailUrl, '_blank', 'noopener');
-    if (!opened) {
-      window.location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
-    }
+    if (!opened) window.location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
     form.reset();
   });
 })();
@@ -195,7 +216,7 @@ const MatrixRain = (function () {
     raf = requestAnimationFrame(loop);
     now = timestamp;
     delta = now - then;
-    if (delta < interval) return;
+    if (delta < interval) return; // throttle
     then = now - (delta % interval);
 
     ctx.fillStyle = 'rgba(10,15,13,0.14)';
