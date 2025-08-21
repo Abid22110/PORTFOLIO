@@ -1,53 +1,9 @@
-// ========= Config: Certificates =========
-// Start with existing certificate(s). Add more by pushing {title, src} below.
-const CERTS = [
-  { title: 'Pitman Training — CPD (Computer Basics)', src: 'assets/images/certificate.jpeg' }
-  // Example to add later:
-  // { title: 'Basic Computer Course', src: 'assets/images/cert-basic-computer.jpeg' },
-  // { title: 'Google Course', src: 'assets/images/cert-google-course.jpeg' }
-];
-
-// ========= AOS =========
+// ============ AOS ============
 document.addEventListener('DOMContentLoaded', () => {
   if (window.AOS) AOS.init({ duration: 650, once: true, offset: 80 });
 });
 
-// ========= Theme (Hacker / Light) + Reset =========
-(function themeInit() {
-  const buttons = document.querySelectorAll('.theme-btn');
-  const resetBtn = document.getElementById('theme-reset');
-  const overlayCanvas = document.getElementById('matrix');
-
-  const saved = localStorage.getItem('theme') || 'hacker';
-  applyTheme(saved);
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const mode = btn.getAttribute('data-theme');
-      applyTheme(mode);
-      buttons.forEach(b => b.classList.toggle('active', b === btn));
-    });
-    // init active state
-    const mode = btn.getAttribute('data-theme');
-    if (mode === saved) btn.classList.add('active');
-  });
-
-  resetBtn?.addEventListener('click', () => {
-    localStorage.removeItem('theme');
-    applyTheme('hacker');
-    buttons.forEach(b => b.classList.toggle('active', b.getAttribute('data-theme') === 'hacker'));
-  });
-
-  function applyTheme(mode) {
-    document.documentElement.setAttribute('data-theme', mode);
-    localStorage.setItem('theme', mode);
-    // Toggle matrix effect
-    if (mode === 'hacker') MatrixRain.start(); else MatrixRain.stop();
-    if (overlayCanvas) overlayCanvas.style.display = mode === 'hacker' ? 'block' : 'none';
-  }
-})();
-
-// ========= Mobile nav + overlay (prevents background mixing) =========
+// ============ Mobile nav + overlay ============
 (function navToggle() {
   const btn = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
@@ -62,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
 })();
 
-// ========= Back to top =========
+// ============ Back to top ============
 document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ========= Typing effect =========
+// ============ Typing effect ============
 (function typingEffect() {
   const el = document.getElementById('typing-text');
   const cursor = document.querySelector('.cursor');
@@ -87,7 +43,7 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   if (cursor) setInterval(() => cursor.classList.toggle('hidden'), 500);
 })();
 
-// ========= Skills progress rings =========
+// ============ Skills rings ============
 (function skillsProgress() {
   const items = document.querySelectorAll('.skill-progress');
   if (!items.length) return;
@@ -105,67 +61,7 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   items.forEach(i => io.observe(i));
 })();
 
-// ========= Certificates grid + modal (no auto-open) =========
-(function certificates() {
-  const grid = document.getElementById('cert-grid');
-  if (!grid) return;
-
-  // Render cards
-  const frag = document.createDocumentFragment();
-  CERTS.forEach((c, idx) => {
-    const card = document.createElement('article');
-    card.className = 'cert-card';
-    card.setAttribute('data-index', String(idx));
-    card.innerHTML = `
-      <img class="cert-thumb" src="${c.src}" alt="${c.title} thumbnail" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-      <div class="cert-body">
-        <p class="cert-title">${c.title}</p>
-        <span class="cert-view">View</span>
-      </div>
-    `;
-    frag.appendChild(card);
-  });
-  grid.appendChild(frag);
-
-  // Modal behavior
-  const modal = document.getElementById('cert-modal');
-  const title = document.getElementById('cert-title');
-  const image = document.getElementById('cert-image');
-  const openBtn = document.getElementById('cert-open');
-  const downloadBtn = document.getElementById('cert-download');
-  const closeBtn = modal?.querySelector('.cert-modal__close');
-
-  function open(idx) {
-    const c = CERTS[idx];
-    if (!c || !modal) return;
-    title.textContent = c.title;
-    image.src = c.src;
-    image.alt = c.title;
-    openBtn.href = c.src;
-    downloadBtn.href = c.src;
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  function close() {
-    modal?.classList.remove('open');
-    modal?.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    image.src = '';
-  }
-
-  grid.addEventListener('click', (e) => {
-    const card = e.target.closest('.cert-card');
-    if (!card) return;
-    const idx = parseInt(card.getAttribute('data-index'), 10);
-    open(idx);
-  });
-  closeBtn?.addEventListener('click', close);
-  modal?.addEventListener('click', (e) => { if (e.target === modal) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-})();
-
-// ========= Contact -> Gmail compose (only message required) =========
+// ============ Contact -> Gmail compose (only message required) ============
 (function contactMail() {
   const form = document.getElementById('contact-form');
   if (!form) return;
@@ -182,17 +78,17 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   });
 })();
 
-// ========= External links security =========
+// ============ External links security ============
 (function externalLinksSafe() {
   document.querySelectorAll('a[target="_blank"]').forEach(a => a.setAttribute('rel', 'noopener noreferrer'));
 })();
 
-// ========= Matrix Rain (Hacker theme only) =========
+// ============ Matrix Rain ============
 const MatrixRain = (function () {
   const canvas = document.getElementById('matrix');
-  if (!canvas) return { start(){}, stop(){} };
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let raf = null, running = false;
+  let raf = null;
 
   let w, h, cols, drops;
   let fps = 42, now, then = performance.now(), interval = 1000 / fps, delta;
@@ -229,24 +125,12 @@ const MatrixRain = (function () {
       const text = chars[Math.floor(Math.random() * chars.length)];
       const x = i * fontSize;
       const y = drops[i] * fontSize;
+
       ctx.fillText(text, x, y);
+
       if (y > window.innerHeight && Math.random() > 0.975) drops[i] = 0;
       else drops[i]++;
     }
   }
-
-  function start() {
-    if (running) return;
-    running = true;
-    canvas.style.display = 'block';
-    raf = requestAnimationFrame(loop);
-  }
-  function stop() {
-    running = false;
-    if (raf) cancelAnimationFrame(raf);
-    raf = null;
-    canvas.style.display = 'none';
-  }
-
-  return { start, stop };
+  raf = requestAnimationFrame(loop);
 })();
