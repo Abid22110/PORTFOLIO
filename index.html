@@ -4,9 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Abid Hussain | Cybersecurity Expert & Ethical Hacker</title>
-  <meta name="description" content="Abid Hussain — Cybersecurity Expert & Ethical Hacker. Projects, skills, and certificates in a fast hacker-themed portfolio with light and dark modes.">
+  <meta name="description" content="Abid Hussain — Cybersecurity Expert & Ethical Hacker. Projects, skills, and certificates in a fast hacker-themed portfolio with light and hacker modes.">
   <meta name="author" content="Abid Hussain">
   <meta name="theme-color" content="#0a0f0d">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- Optional: tighten CSP after verifying CDNs (remove 'unsafe-inline' if you add nonces) -->
+  <!--
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data:;
+                 script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
+                 style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
+                 font-src 'self' https://fonts.gstatic.com;
+                 connect-src 'self';
+                 frame-ancestors 'none';
+                 upgrade-insecure-requests">
+  -->
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -14,8 +27,8 @@
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
   <!-- AOS + Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- App CSS -->
   <link rel="stylesheet" href="css/styles.css">
@@ -51,6 +64,7 @@
         <nav class="site-nav">
           <button class="nav-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
           <div class="nav-links" role="navigation" aria-label="Primary">
+            <a href="#about">Home</a>
             <a href="#about">About</a>
             <a href="#education">Education</a>
             <a href="#projects">Projects</a>
@@ -60,15 +74,22 @@
           </div>
         </nav>
 
-        <div class="theme-switch-wrapper">
-          <label for="theme-select" class="theme-label">Theme</label>
-          <select id="theme-select" aria-label="Theme select">
-            <option value="hacker" selected>Hacker</option>
-            <option value="light">Light</option>
-          </select>
+        <!-- Theme buttons: Hacker / Light + Reset -->
+        <div class="theme-toggle" aria-label="Theme toggle">
+          <button class="theme-btn active" data-theme="hacker" title="Hacker theme">
+            <i class="fa-solid fa-user-ninja"></i> Hacker
+          </button>
+          <button class="theme-btn" data-theme="light" title="Light theme">
+            <i class="fa-solid fa-sun"></i> Light
+          </button>
+          <button id="theme-reset" class="theme-reset" title="Reset theme">
+            <i class="fa-solid fa-rotate"></i>
+          </button>
         </div>
       </div>
     </div>
+    <!-- Overlay for mobile nav to avoid background mixing -->
+    <div class="nav-overlay" aria-hidden="true"></div>
   </header>
 
   <main>
@@ -174,13 +195,8 @@
     <!-- Certificates -->
     <section id="certificates" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-award"></i> Certificates</h2>
-
-      <!-- Dynamic grid will be injected by JS using CERTS array -->
+      <!-- Dynamic grid will be injected by JS (no auto-open, no default preview) -->
       <div id="cert-grid" class="cert-grid" aria-live="polite"></div>
-
-      <p class="cert-note">
-        Tip: Add more images to assets/images/ and then add entries in js/script.js → CERTS array.
-      </p>
     </section>
 
     <!-- Skills -->
@@ -300,7 +316,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-text">
-          <p>© 2025 Abid Hussain. All rights reserved.</p>
+          <p>© 2025 Abid Hussain — All rights reserved.</p>
           <p>Cybersecurity Expert & Digital Solutions Provider</p>
         </div>
         <div class="back-to-top">
@@ -310,17 +326,23 @@
     </div>
   </footer>
 
-  <!-- Modal for Certificates -->
+  <!-- Modal for Certificates (no default open) -->
   <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="cert-modal__inner">
-      <button class="cert-modal__close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-      <h3 id="cert-title"></h3>
+      <div class="cert-modal__bar">
+        <h3 id="cert-title"></h3>
+        <div class="cert-actions">
+          <a id="cert-open" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Open</a>
+          <a id="cert-download" class="btn btn-ghost" download>Download</a>
+          <button class="cert-modal__close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
       <img id="cert-image" src="" alt="Certificate image">
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/script.js" defer></script>
 </body>
 </html>
