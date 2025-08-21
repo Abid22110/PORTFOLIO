@@ -59,35 +59,28 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
       const text = wrap.querySelector('.skill-percent');
       if (!circle || !text) { io.unobserve(wrap); return; }
 
-      // Use the actual r from SVG if present; fallback to 55
       const r = parseFloat(circle.getAttribute('r') || '55');
       const circumference = 2 * Math.PI * r;
 
-      // Initialize stroke parameters
       circle.style.strokeDasharray = String(circumference);
       circle.style.strokeDashoffset = String(circumference);
 
-      // Animate dashoffset to the target
       requestAnimationFrame(() => {
         const targetOffset = circumference - (percentTarget / 100) * circumference;
         circle.style.strokeDashoffset = String(targetOffset);
       });
 
-      // Percent count-up
-      const duration = 1200; // ms
+      const duration = 1200;
       let start = null;
 
       function step(ts) {
         if (!start) start = ts;
         const p = Math.min((ts - start) / duration, 1);
-        const eased = easeOutCubic(p);
+        const eased = 1 - Math.pow(1 - p, 3);
         const current = Math.round(eased * percentTarget);
         text.textContent = `${current}%`;
-        if (p < 1) {
-          requestAnimationFrame(step);
-        } else {
-          wrap.classList.add('filled'); // glow pop
-        }
+        if (p < 1) requestAnimationFrame(step);
+        else wrap.classList.add('filled');
       }
       requestAnimationFrame(step);
 
@@ -96,72 +89,29 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   }, { threshold: 0.35 });
 
   items.forEach(i => io.observe(i));
-
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 })();
 
-// ============ Contact: direct service send (if set) -> fallback Gmail compose ============
-(function contactHandler() {
+// ============ Contact -> Gmail compose (Name + Email + Message) ============
+(function contactMail() {
   const form = document.getElementById('contact-form');
   if (!form) return;
-
-  // Set this to your form endpoint for direct delivery (e.g., Formspree/Web3Forms)
-  // Example (Formspree): https://formspree.io/f/xxxxx
-  const FORMSPREE_ENDPOINT = ''; // <- add your endpoint to enable direct send
-
   const TO = 'abidhussain15658@gmail.com';
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
+    const name = (document.getElementById('name')?.value || '').trim();
     const email = (document.getElementById('email')?.value || '').trim();
     const message = (document.getElementById('message')?.value || '').trim();
 
-    if (!validateEmail(email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-    if (!message) {
-      alert('Please enter your message.');
-      return;
-    }
+    const subject = encodeURIComponent(`Portfolio Message from ${name || 'Visitor'}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
 
-    // If endpoint configured, send directly to your inbox service
-    if (FORMSPREE_ENDPOINT) {
-      try {
-        const formData = new FormData();
-        formData.append('email', email);
-        formData.append('message', message);
-
-        const res = await fetch(FORMSPREE_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: formData
-        });
-
-        if (res.ok) {
-          alert('Message sent successfully!');
-          form.reset();
-          return;
-        }
-        // Non-200 -> fallback
-        console.warn('Form service failed, falling back to Gmail compose.');
-      } catch (err) {
-        console.warn('Form service error, falling back to Gmail compose.', err);
-      }
-    }
-
-    // Fallback: open Gmail compose with prefilled details
-    const subject = encodeURIComponent(`Portfolio Message from ${email}`);
-    const body = encodeURIComponent(`From: ${email}\n\nMessage:\n${message}`);
+    // Prefer Gmail web compose; fallback to mailto
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(TO)}&su=${subject}&body=${body}`;
     const opened = window.open(gmailUrl, '_blank', 'noopener');
     if (!opened) window.location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
     form.reset();
   });
-
-  function validateEmail(v) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  }
 })();
 
 // ============ External links security ============
@@ -174,7 +124,6 @@ const MatrixRain = (function () {
   const canvas = document.getElementById('matrix');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let raf = null;
 
   let w, h, cols, drops;
   let fps = 42, now, then = performance.now(), interval = 1000 / fps, delta;
@@ -195,10 +144,10 @@ const MatrixRain = (function () {
   resize();
 
   function loop(timestamp) {
-    raf = requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
     now = timestamp;
     delta = now - then;
-    if (delta < interval) return; // throttle
+    if (delta < interval) return;
     then = now - (delta % interval);
 
     ctx.fillStyle = 'rgba(10,15,13,0.14)';
@@ -218,5 +167,5 @@ const MatrixRain = (function () {
       else drops[i]++;
     }
   }
-  raf = requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
 })();
