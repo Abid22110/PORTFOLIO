@@ -10,9 +10,9 @@ AOS.init({
   const checkbox = document.getElementById('theme-checkbox');
   const saved = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
-  checkbox.checked = saved !== 'dark' ? true : false;
+  checkbox && (checkbox.checked = saved !== 'dark');
 
-  checkbox.addEventListener('change', () => {
+  checkbox && checkbox.addEventListener('change', () => {
     const next = checkbox.checked ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
@@ -95,7 +95,6 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   let w, h, cols, drops;
   const fontSize = 16;
   const chars = '01$#@*&%{}[]<>/\\|+=-_.';
-  const trail = [];
 
   function resize() {
     w = canvas.width = window.innerWidth;
@@ -129,4 +128,33 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
     requestAnimationFrame(draw);
   }
   draw();
+})();
+
+/* ===========================
+   SEND MESSAGE -> GMAIL (mailto)
+   =========================== */
+(function contactMailto() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  // Yahan apna Gmail likhen (agar change karna ho)
+  const TO = 'abidhussain15658@gmail.com';
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = (document.getElementById('name')?.value || '').trim();
+    const email = (document.getElementById('email')?.value || '').trim();
+    const message = (document.getElementById('message')?.value || '').trim();
+
+    const subject = encodeURIComponent(`Portfolio Message from ${name || 'Visitor'}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+
+    // Gmail/mail client compose khulega
+    window.location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
+
+    // Optional: form clear
+    form.reset();
+  });
 })();
