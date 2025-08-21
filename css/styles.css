@@ -1,0 +1,118 @@
+:root {
+  --primary: #2c3e50;
+  --accent: #e67e22;
+  --bg: #f9f9f9;
+  --white: #fff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--primary);
+  line-height: 1.6;
+}
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.site-header {
+  background: var(--primary);
+  color: var(--white);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
+  position: relative;
+}
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.site-header h1 { font-size: 1.8rem; }
+.tagline {
+  font-style: italic;
+  opacity: 0.8;
+  width: 100%;
+}
+.site-nav {
+  display: none;
+  flex-basis: 100%;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.site-nav a {
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+.site-nav a:hover {
+  background: var(--accent);
+  border-radius: 4px;
+}
+.nav-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+.section {
+  background: var(--white);
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+.section h2 {
+  border-bottom: 3px solid var(--accent);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+.timeline {
+  list-style: none;
+}
+.timeline li {
+  margin-bottom: 0.75rem;
+}
+.year {
+  font-weight: bold;
+  color: var(--accent);
+  margin-right: 0.5rem;
+}
+.certificate-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.certificate-card img {
+  max-width: 280px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+.cert-info p { margin-bottom: 0.5rem; }
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
+  gap: 0.5rem;
+  list-style: disc inside;
+}
+.site-footer {
+  background: var(--white);
+  margin-top: 3rem;
+  padding: 1rem 0;
+  text-align: center;
+  color: #777;
+}
+@media (min-width: 600px) {
+  .site-nav { display: flex; justify-content: flex-end; }
+  .nav-toggle { display: none; }
+  .site-header .container { align-items: center; }
+}
