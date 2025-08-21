@@ -217,12 +217,12 @@ img { max-width: 100%; height: auto; display: block; }
 
 .form-group { display: grid; gap: 6px; margin-bottom: 10px; }
 label { color: var(--muted); font-size: 14px; }
-textarea, .contact-form input[type="email"] {
+textarea, .contact-form input {
   width: 100%; color: var(--text); background: #0c1411; border: 1px solid var(--border);
   border-radius: 10px; padding: 12px; outline: none;
 }
 textarea { min-height: 140px; }
-textarea:focus, .contact-form input[type="email"]:focus { border-color: var(--neon); box-shadow: 0 0 0 3px rgba(0,255,136,0.15); }
+textarea:focus, .contact-form input:focus { border-color: var(--neon); box-shadow: 0 0 0 3px rgba(0,255,136,0.15); }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   color: #021108; background: var(--neon); border: none; border-radius: 10px;
