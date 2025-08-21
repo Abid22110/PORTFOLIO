@@ -1,87 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Abid Hussain | Cybersecurity Student</title>
+  <title>Abid Hussain | Cybersecurity Expert</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
-      <img src="assets/images/profile.jpg" alt="Abid Hussain" class="profile-pic">
-      <h1>Abid Hussain</h1>
-      <p class="tagline">Cybersecurity Student</p>
+      <div class="header-content" data-aos="fade-down">
+        <img src="assets/images/profile.jpg" alt="Abid Hussain" class="profile-pic">
+        <div>
+          <h1>Abid Hussain</h1>
+          <p class="tagline" id="typing-text">Cybersecurity Expert</p>
+        </div>
+      </div>
+
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <div class="slider round"></div>
+        </label>
+      </div>
+      
       <nav class="site-nav">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#certificate">Certificate</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-aos="fade-down" data-aos-delay="100">About</a>
+        <a href="#education" data-aos="fade-down" data-aos-delay="200">Education</a>
+        <a href="#projects" data-aos="fade-down" data-aos-delay="300">Projects</a>
+        <a href="#certificate" data-aos="fade-down" data-aos-delay="400">Certificate</a>
+        <a href="#skills" data-aos="fade-down" data-aos-delay="500">Skills</a>
+        <a href="#contact" data-aos="fade-down" data-aos-delay="600">Contact</a>
       </nav>
       <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </header>
 
   <main>
-    <section id="about" class="section container">
+    <section id="about" class="section container" data-aos="fade-up">
       <h2>About Me</h2>
-      <p>I’m a passionate cybersecurity student with a foundation in computer basics (Pitman Training CPD certificate). I love exploring network security, ethical hacking, and building safe, robust systems.</p>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a passionate cybersecurity expert with a foundation in computer basics (Pitman Training CPD certificate). I love exploring network security, ethical hacking, and building safe, robust systems to protect against digital threats.</p>
+          <p>My approach combines technical expertise with an understanding of security frameworks. I continuously update my knowledge to stay ahead of emerging threats and vulnerabilities.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Network Security</h3>
+            <p>Firewall Configuration & Monitoring</p>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-bug"></i>
+            <h3>Penetration Testing</h3>
+            <p>Vulnerability Assessment</p>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-code"></i>
+            <h3>Security Automation</h3>
+            <p>Python Scripting & Tools</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="education" class="section container">
+    <section id="education" class="section container" data-aos="fade-up">
       <h2>Education</h2>
       <ul class="timeline">
-        <li>
+        <li data-aos="fade-right" data-aos-delay="100">
           <span class="year">2018–2020</span>
-          Matric • Alhamad Public High School
+          <div class="timeline-content">
+            <h3>Matric</h3>
+            <p>Alhamad Public High School</p>
+          </div>
         </li>
-        <li>
+        <li data-aos="fade-right" data-aos-delay="200">
           <span class="year">2022–2024</span>
-          FSC • Govt Graduate College Mailsi
+          <div class="timeline-content">
+            <h3>FSC</h3>
+            <p>Govt Graduate College Mailsi</p>
+          </div>
         </li>
       </ul>
     </section>
 
-    <section id="certificate" class="section container">
+    <section id="projects" class="section container" data-aos="fade-up">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card" data-aos="flip-left" data-aos-delay="100">
+          <div class="card-content">
+            <div class="card-front">
+              <i class="fas fa-shield-alt"></i>
+              <h3>Network Security Analysis</h3>
+            </div>
+            <div class="card-back">
+              <p>Implemented comprehensive firewall policies and network monitoring for small business infrastructure.</p>
+              <div class="card-tags">
+                <span>Firewall</span>
+                <span>IDS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="card-content">
+            <div class="card-front">
+              <i class="fas fa-lock"></i>
+              <h3>Password Manager</h3>
+            </div>
+            <div class="card-back">
+              <p>Developed a secure password management application with encryption and two-factor authentication.</p>
+              <div class="card-tags">
+                <span>Python</span>
+                <span>Encryption</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-card" data-aos="flip-left" data-aos-delay="300">
+          <div class="card-content">
+            <div class="card-front">
+              <i class="fas fa-robot"></i>
+              <h3>Security Automation</h3>
+            </div>
+            <div class="card-back">
+              <p>Created automated scripts for regular security audits and vulnerability scanning of web applications.</p>
+              <div class="card-tags">
+                <span>Python</span>
+                <span>Automation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificate" class="section container" data-aos="fade-up">
       <h2>Certificate</h2>
-      <div class="certificate-card">
+      <div class="certificate-card" data-aos="zoom-in">
         <img src="assets/images/certificate.jpg" alt="Pitman Training Certificate">
         <div class="cert-info">
           <p><strong>Provider:</strong> Pitman Training – Minhaj University Lahore</p>
           <p><strong>CPD Hours:</strong> 20</p>
           <p><strong>Date:</strong> 26 June 2025</p>
           <p><strong>Grade:</strong> Low Advanced</p>
+          <a href="#" class="btn">View Certificate</a>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="section container">
+    <section id="skills" class="section container" data-aos="fade-up">
       <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Network Security</li>
-        <li>Ethical Hacking Basics</li>
-        <li>Python Scripting</li>
-        <li>Linux Command Line</li>
-        <li>Illustrator & Photoshop</li>
-        <li>MS Word & Excel</li>
-      </ul>
+      <div class="skills-container">
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
+          <div class="skill-progress" data-percent="85">
+            <svg class="progress-circle" width="120" height="120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">85%</div>
+          </div>
+          <p class="skill-name">Network Security</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
+          <div class="skill-progress" data-percent="75">
+            <svg class="progress-circle" width="120" height="120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">75%</div>
+          </div>
+          <p class="skill-name">Ethical Hacking</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
+          <div class="skill-progress" data-percent="70">
+            <svg class="progress-circle" width="120" height="120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">70%</div>
+          </div>
+          <p class="skill-name">Python Scripting</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
+          <div class="skill-progress" data-percent="80">
+            <svg class="progress-circle" width="120" height="120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">80%</div>
+          </div>
+          <p class="skill-name">Linux Command Line</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="500">
+          <div class="skill-progress" data-percent="65">
+            <svg class="progress-circle" width="120" height="120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">65%</div>
+          </div>
+          <p class="skill-name">Photoshop</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="600">
+          <div class="skill-progress" data-percent="90">
+            <svg class="progress-circle" width="120" height="120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">90%</div>
+          </div>
+          <p class="skill-name">MS Office</p>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="section container">
+    <section id="contact" class="section container" data-aos="fade-up">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:abidhussain15658@gmail.com">abidhussain15658@gmail.com</a></p>
-      <p>Phone: <a href="tel:+923061565858">0306-156-5858</a></p>
-      <p>Location: Lahore Muslim Town, Moor Flyover</p>
+      <div class="contact-container">
+        <div class="contact-info" data-aos="fade-right">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p><a href="mailto:abidhussain15658@gmail.com">abidhussain15658@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p><a href="tel:+923061565858">0306-156-5858</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Location</h3>
+              <p>Lahore Muslim Town, Moor Flyover</p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://linkedin.com/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Abid22110" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        
+        <form class="contact-form" data-aos="fade-left" id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© 2025 Abid Hussain. All rights reserved.</p>
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>© 2025 Abid Hussain. All rights reserved.</p>
+          <p>Cybersecurity Expert & Digital Solutions Provider</p>
+        </div>
+        <div class="back-to-top">
+          <a href="#" id="scroll-top"><i class="fas fa-chevron-up"></i></a>
+        </div>
+      </div>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
