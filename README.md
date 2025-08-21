@@ -1,7 +1,17 @@
-# Abid Hussain – Cybersecurity Student Portfolio
+# Abid Hussain – Interactive Cybersecurity Portfolio
 
-This repository powers my GitHub Pages site:  
+This repository powers my animated GitHub Pages portfolio site:  
 https://Abid22110.github.io/PORTFOLIO/
+
+## Features
+
+✨ **Modern Animations** - AOS (Animate On Scroll) for elegant scroll effects  
+🌙 **Dark/Light Theme** - Toggle between themes with localStorage persistence  
+📊 **Circular Skill Progress** - Visual representation of skill proficiency  
+💻 **Project Showcase** - Flip cards with project details and technologies  
+📱 **Fully Responsive** - Mobile-first design for all screen sizes  
+✅ **Form Validation** - Interactive contact form with validation  
+🔄 **Typing Animation** - Dynamic text animation in the header  
 
 ## Quick Start
 
@@ -10,20 +20,31 @@ https://Abid22110.github.io/PORTFOLIO/
    git clone https://github.com/Abid22110/PORTFOLIO.git
    cd PORTFOLIO
    ```
-2. Add your images into `assets/images/`:
+
+2. Add your images to `assets/images/`:
    - `profile.jpg` (portrait)  
    - `certificate.jpg` (Pitman Training certificate)  
-3. Install and run a local server (optional):
+
+3. Run locally (optional):
    ```bash
    npm install -g live-server
    live-server
    ```
-4. Commit & Push:
+
+4. Deploy:
    ```bash
    git add .
-   git commit -m "feat: deploy full responsive portfolio"
+   git commit -m "feat: deploy animated portfolio site"
    git push origin main
    ```
+
+## Technologies Used
+
+- HTML5 / CSS3
+- Vanilla JavaScript
+- AOS Animation Library
+- Font Awesome Icons
+- SVG Circle Animations
 
 ## Live Site
 
