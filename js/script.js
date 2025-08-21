@@ -24,7 +24,7 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ============ Typing effect ============
+// ============ Typing effect (classic) ============
 (function typingEffect() {
   const el = document.getElementById('typing-text');
   const cursor = document.querySelector('.cursor');
@@ -43,21 +43,29 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   if (cursor) setInterval(() => cursor.classList.toggle('hidden'), 500);
 })();
 
-// ============ Skills rings ============
+// ============ Skills: radial progress + extra effects ============
 (function skillsProgress() {
   const items = document.querySelectorAll('.skill-progress');
   if (!items.length) return;
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
       const wrap = e.target;
       const percent = parseInt(wrap.getAttribute('data-percent') || '0', 10);
       const circle = wrap.querySelector('.progress-circle-fill');
-      const max = 2 * Math.PI * 50; // r=50
+      const max = 2 * Math.PI * 55; // r=55 (matches CSS)
       circle.style.strokeDashoffset = String(max - (percent / 100) * max);
+
+      // subtle pop after fill
+      setTimeout(() => {
+        wrap.classList.add('filled');
+      }, 1100);
+
       io.unobserve(wrap);
     });
   }, { threshold: 0.35 });
+
   items.forEach(i => io.observe(i));
 })();
 
@@ -83,7 +91,7 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   document.querySelectorAll('a[target="_blank"]').forEach(a => a.setAttribute('rel', 'noopener noreferrer'));
 })();
 
-// ============ Matrix Rain ============
+// ============ Matrix Rain (optimized) ============
 const MatrixRain = (function () {
   const canvas = document.getElementById('matrix');
   if (!canvas) return;
