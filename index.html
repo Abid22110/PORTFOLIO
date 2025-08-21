@@ -1,43 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mode="hacker">
+<html lang="en" data-theme="hacker">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Abid Hussain | Cybersecurity Expert & Ethical Hacker</title>
-  <meta name="description" content="Abid Hussain — Cybersecurity Expert & Ethical Hacker. Network security, penetration testing, and security automation. Explore projects, skills, and certificates.">
+  <meta name="description" content="Abid Hussain — Cybersecurity Expert & Ethical Hacker. Projects, skills, and certificates in a fast hacker-themed portfolio with light and dark modes.">
   <meta name="author" content="Abid Hussain">
   <meta name="theme-color" content="#0a0f0d">
-  <meta name="referrer" content="no-referrer-when-downgrade">
-  <!-- Optional CSP (enable after verifying CDNs). Might require 'unsafe-inline' for libraries. -->
-  <!--
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self';
-                 script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
-                 style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
-                 img-src 'self' data:;
-                 font-src https://fonts.gstatic.com 'self';
-                 connect-src 'self';
-                 frame-ancestors 'none';
-                 upgrade-insecure-requests">
-  -->
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-  <!-- Libraries -->
+  <!-- AOS + Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- App CSS -->
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Favicon (use your untitle.jpg or replace with your logo) -->
+  <!-- Favicon -->
   <link rel="icon" href="assets/images/untitle.jpg" type="image/jpeg">
 </head>
 <body>
-  <!-- Matrix Rain (hacker mode only) -->
+  <!-- Matrix Rain (only visible in Hacker theme) -->
   <canvas id="matrix" aria-hidden="true"></canvas>
 
   <header class="site-header">
@@ -67,17 +54,17 @@
             <a href="#about">About</a>
             <a href="#education">Education</a>
             <a href="#projects">Projects</a>
-            <a href="#certificate">Certificates</a>
+            <a href="#certificates">Certificates</a>
             <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
 
         <div class="theme-switch-wrapper">
-          <label for="mode-select" class="theme-label">Theme</label>
-          <select id="mode-select" aria-label="Theme mode">
+          <label for="theme-select" class="theme-label">Theme</label>
+          <select id="theme-select" aria-label="Theme select">
             <option value="hacker" selected>Hacker</option>
-            <option value="clean">Clean Dark</option>
+            <option value="light">Light</option>
           </select>
         </div>
       </div>
@@ -85,16 +72,17 @@
   </header>
 
   <main>
+    <!-- About -->
     <section id="about" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-user-secret"></i> About Me</h2>
       <div class="about-content">
-        <div class="about-text" style="content-visibility:auto; contain-intrinsic-size: 500px;">
+        <div class="about-text" style="content-visibility:auto; contain-intrinsic-size: 520px;">
           <p>I’m Abid Hussain, a cybersecurity practitioner focused on building and defending resilient systems. With a foundation in computer basics (Pitman Training CPD), I work across network security, ethical hacking, and security automation to reduce risk and strengthen defenses.</p>
-          <p>I combine blue team discipline with red team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
+          <p>I blend blue-team discipline with red-team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
           <ul class="about-highlights">
             <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, secure network segmentation</li>
-            <li><i class="fa-regular fa-circle-check"></i> Web app recon and vuln scanning with automated pipelines</li>
-            <li><i class="fa-regular fa-circle-check"></i> Python scripts to parse logs, enrich IOCs, and alert faster</li>
+            <li><i class="fa-regular fa-circle-check"></i> Web app recon and vuln scanning with automation</li>
+            <li><i class="fa-regular fa-circle-check"></i> Python scripts for log parsing, IOC enrichment, faster alerting</li>
           </ul>
         </div>
         <div class="about-stats">
@@ -117,6 +105,7 @@
       </div>
     </section>
 
+    <!-- Education -->
     <section id="education" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
       <ul class="timeline">
@@ -137,6 +126,7 @@
       </ul>
     </section>
 
+    <!-- Projects -->
     <section id="projects" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-terminal"></i> Projects</h2>
       <div class="projects-grid">
@@ -147,7 +137,7 @@
               <h3>Network Security Analysis</h3>
             </div>
             <div class="card-back">
-              <p>Deployed baseline firewall rules, IDS signatures, and network monitoring for a small-business stack. Reduced alert noise and hardened ingress/egress.</p>
+              <p>Deployed baseline firewall rules, IDS signatures, and continuous monitoring. Reduced alert noise and hardened ingress/egress.</p>
               <div class="card-tags"><span>Firewall</span><span>IDS</span><span>SIEM</span></div>
             </div>
           </div>
@@ -160,7 +150,7 @@
               <h3>Password Manager</h3>
             </div>
             <div class="card-back">
-              <p>Secure password vault with local encryption, KDF hardening, and 2FA support. CLI utilities for copy-to-clipboard and audit checks.</p>
+              <p>Local-encrypted vault with KDF hardening and 2FA. CLI utilities for copy-to-clipboard and audit checks.</p>
               <div class="card-tags"><span>Python</span><span>Encryption</span><span>2FA</span></div>
             </div>
           </div>
@@ -173,7 +163,7 @@
               <h3>Security Automation</h3>
             </div>
             <div class="card-back">
-              <p>Automated recon + vuln scanning pipeline with parsing, deduplication, and reporting. Improved MTTR and decreased toil.</p>
+              <p>Automated recon + vuln scanning pipeline with parsing and reporting. Improved detection and reduced toil.</p>
               <div class="card-tags"><span>Python</span><span>Automation</span><span>DevSecOps</span></div>
             </div>
           </div>
@@ -181,45 +171,19 @@
       </div>
     </section>
 
-    <section id="certificate" class="section container" data-aos="fade-up">
+    <!-- Certificates -->
+    <section id="certificates" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-award"></i> Certificates</h2>
 
-      <!-- Click a name below to open that certificate -->
-      <ul class="cert-list">
-        <li>
-          <a class="cert-link" data-name="Pitman Training — CPD (Computer Basics)" href="assets/images/certificate.jpeg" target="_blank" rel="noopener noreferrer">
-            Pitman Training — CPD (Computer Basics)
-          </a>
-        </li>
-        <li>
-          <a class="cert-link" data-name="Basic Computer Course" href="assets/images/cert-basic-computer.jpeg" target="_blank" rel="noopener noreferrer">
-            Basic Computer Course
-          </a>
-        </li>
-        <li>
-          <a class="cert-link" data-name="Google Course" href="assets/images/cert-google-course.jpeg" target="_blank" rel="noopener noreferrer">
-            Google Course
-          </a>
-        </li>
-      </ul>
+      <!-- Dynamic grid will be injected by JS using CERTS array -->
+      <div id="cert-grid" class="cert-grid" aria-live="polite"></div>
 
-      <!-- Optional featured preview card (shows the first certificate) -->
-      <div class="certificate-card" data-aos="zoom-in">
-        <img src="assets/images/certificate.jpeg" alt="Certificate preview: Pitman Training CPD" loading="lazy" decoding="async">
-        <div class="cert-info">
-          <p><strong>Provider:</strong> Pitman Training – Minhaj University Lahore</p>
-          <p><strong>CPD Hours:</strong> 20</p>
-          <p><strong>Date:</strong> 26 June 2025</p>
-          <p><strong>Grade:</strong> Low Advanced</p>
-          <a class="btn" href="assets/images/certificate.jpeg" target="_blank" rel="noopener">View Certificate</a>
-        </div>
-      </div>
-
-      <p class="cert-note">Tip: Upload more certificates at:
-        assets/images/cert-basic-computer.jpeg and assets/images/cert-google-course.jpeg
+      <p class="cert-note">
+        Tip: Add more images to assets/images/ and then add entries in js/script.js → CERTS array.
       </p>
     </section>
 
+    <!-- Skills -->
     <section id="skills" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-screwdriver-wrench"></i> Skills</h2>
       <div class="skills-container">
@@ -286,6 +250,7 @@
       </div>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
       <div class="contact-container">
@@ -318,21 +283,14 @@
           </div>
         </div>
 
+        <!-- Only message required -->
         <form class="contact-form" data-aos="fade-left" id="contact-form">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input autocomplete="name" type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input autocomplete="email" type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
           </div>
           <button type="submit" class="btn">Send Message</button>
-          <p class="form-note">Note: This opens your mail app to send directly to Abid’s Gmail. For auto-submit without mail app, connect Formspree/EmailJS in JS config.</p>
+          <p class="form-note">Opens Gmail compose to send directly to Abid’s email.</p>
         </form>
       </div>
     </section>
@@ -351,6 +309,15 @@
       </div>
     </div>
   </footer>
+
+  <!-- Modal for Certificates -->
+  <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="cert-modal__inner">
+      <button class="cert-modal__close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="cert-title"></h3>
+      <img id="cert-image" src="" alt="Certificate image">
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
