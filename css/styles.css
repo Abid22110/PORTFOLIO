@@ -1,294 +1,326 @@
-/* ===========================
-   GLOBAL THEME + RESET
-   =========================== */
-:root {
-  /* Clean dark defaults (overridden in [data-mode="hacker"]) */
-  --bg: #0c0f12;
-  --panel: #11161b;
-  --panel-2: #0f1419;
-  --neon: #00ffa3;
-  --neon-2: #00e0ff;
-  --text: #e9fffb;
-  --muted: #96e8c7;
-  --danger: #ff4b55;
-  --border: rgba(0, 255, 163, 0.2);
-  --shadow: 0 0 8px rgba(0,255,163,0.35), 0 0 18px rgba(0,255,163,0.18);
-}
+<!DOCTYPE html>
+<html lang="en" data-theme="hacker">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Abid Hussain | Cybersecurity Expert & Ethical Hacker</title>
+  <meta name="description" content="Abid Hussain — Cybersecurity Expert & Ethical Hacker. Projects, skills, and certificates in a fast hacker-themed portfolio with light and dark modes.">
+  <meta name="author" content="Abid Hussain">
+  <meta name="theme-color" content="#0a0f0d">
 
-html[data-mode="hacker"] {
-  --bg: #0a0f0d;
-  --panel: #0e1512;
-  --panel-2: #0b1311;
-  --neon: #00ff88;
-  --neon-2: #00e0ff;
-  --text: #e6fff2;
-  --muted: #8de6b5;
-  --danger: #ff3b3b;
-  --border: rgba(0, 255, 136, 0.25);
-  --shadow: 0 0 8px rgba(0,255,136,0.5), 0 0 18px rgba(0,255,136,0.25);
-}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-img { max-width: 100%; height: auto; }
+  <!-- AOS + Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-/* Accessibility: respect reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-}
+  <!-- App CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 
-/* Matrix canvas */
-#matrix {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.18;
-  pointer-events: none;
-}
-html[data-mode="clean"] #matrix { display: none; }
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/untitle.jpg" type="image/jpeg">
+</head>
+<body>
+  <!-- Matrix Rain (only visible in Hacker theme) -->
+  <canvas id="matrix" aria-hidden="true"></canvas>
 
-/* Containers */
-.container { width: min(1100px, 92%); margin-inline: auto; position: relative; z-index: 1; }
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content" data-aos="fade-down">
+        <div class="avatar-wrap">
+          <img src="assets/images/profile.jpeg" alt="Abid Hussain profile photo" loading="eager" decoding="async" fetchpriority="high">
+          <span class="avatar-glow" aria-hidden="true"></span>
+        </div>
+        <div class="hero-text">
+          <h1 class="glitch" data-text="Abid Hussain">Abid Hussain</h1>
+          <p class="tagline">
+            <span id="typing-text">Cybersecurity Expert</span><span class="cursor" aria-hidden="true">|</span>
+          </p>
+          <div class="hero-meta">
+            <span><i class="fa-solid fa-shield-halved"></i> Network Defense</span>
+            <span><i class="fa-solid fa-bug"></i> PenTesting</span>
+            <span><i class="fa-solid fa-code"></i> Automation</span>
+          </div>
+        </div>
+      </div>
 
-.section { padding: 64px 0; position: relative; scroll-margin-top: 84px; }
-.section h2 {
-  margin: 0 0 24px;
-  font-family: "VT323", monospace;
-  font-size: clamp(28px, 4vw, 36px);
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(0,255,136,0.35);
-}
+      <div class="top-actions">
+        <nav class="site-nav">
+          <button class="nav-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
+          <div class="nav-links" role="navigation" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#certificates">Certificates</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
 
-/* Header */
-.site-header {
-  position: sticky; top: 0; z-index: 10;
-  padding: 16px 0 8px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.25));
-  backdrop-filter: saturate(120%) blur(6px);
-  border-bottom: 1px solid var(--border);
-}
-.header-content { display: flex; align-items: center; gap: 18px; }
+        <div class="theme-switch-wrapper">
+          <label for="theme-select" class="theme-label">Theme</label>
+          <select id="theme-select" aria-label="Theme select">
+            <option value="hacker" selected>Hacker</option>
+            <option value="light">Light</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
 
-.avatar-wrap {
-  position: relative;
-  width: 92px; height: 92px; min-width: 92px;
-  border-radius: 50%;
-  padding: 3px;
-  background: radial-gradient(circle at 30% 30%, var(--neon), transparent 60%),
-              radial-gradient(circle at 70% 70%, var(--neon-2), transparent 60%);
-  box-shadow: var(--shadow);
-}
-.avatar-wrap img {
-  width: 100%; height: 100%; display: block;
-  border-radius: 50%; object-fit: cover;
-  filter: contrast(1.05) saturate(1.05);
-}
-.avatar-glow {
-  position: absolute; inset: -6px; border-radius: 50%;
-  background: conic-gradient(from 0deg, var(--neon), var(--neon-2), var(--neon));
-  filter: blur(14px); opacity: 0.25; z-index: -1;
-}
+  <main>
+    <!-- About -->
+    <section id="about" class="section container" data-aos="fade-up">
+      <h2><i class="fa-solid fa-user-secret"></i> About Me</h2>
+      <div class="about-content">
+        <div class="about-text" style="content-visibility:auto; contain-intrinsic-size: 520px;">
+          <p>I’m Abid Hussain, a cybersecurity practitioner focused on building and defending resilient systems. With a foundation in computer basics (Pitman Training CPD), I work across network security, ethical hacking, and security automation to reduce risk and strengthen defenses.</p>
+          <p>I blend blue-team discipline with red-team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
+          <ul class="about-highlights">
+            <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, secure network segmentation</li>
+            <li><i class="fa-regular fa-circle-check"></i> Web app recon and vuln scanning with automation</li>
+            <li><i class="fa-regular fa-circle-check"></i> Python scripts for log parsing, IOC enrichment, faster alerting</li>
+          </ul>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Network Security</h3>
+            <p>Firewall Configuration & Monitoring</p>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-bug"></i>
+            <h3>Penetration Testing</h3>
+            <p>Vulnerability Assessment</p>
+          </div>
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-code"></i>
+            <h3>Security Automation</h3>
+            <p>Python Scripting & Tools</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-/* Hero text */
-.hero-text h1 { margin: 0 0 6px; font-family: "VT323", monospace; font-size: clamp(36px, 6vw, 64px); letter-spacing: 1px; }
-.glitch { position: relative; text-shadow: 0 0 8px var(--neon), 0 0 22px rgba(0,255,136,0.5); }
-.glitch::before, .glitch::after {
-  content: attr(data-text); position: absolute; left: 0; top: 0; width: 100%;
-}
-.glitch::before { color: var(--neon-2); transform: translate(2px, -1px); opacity: 0.7; animation: glitchShift 2s infinite ease-in-out alternate; }
-.glitch::after  { color: var(--danger); transform: translate(-2px, 1px); opacity: 0.6; animation: glitchShift 2.2s infinite ease-in-out alternate-reverse; }
-@keyframes glitchShift {
-  0% { clip-path: inset(0 0 85% 0); }
-  20% { clip-path: inset(10% 0 60% 0); }
-  40% { clip-path: inset(40% 0 30% 0); }
-  60% { clip-path: inset(65% 0 5% 0); }
-  80% { clip-path: inset(30% 0 40% 0); }
-  100% { clip-path: inset(0 0 85% 0); }
-}
-.tagline { margin: 0; font-size: 18px; color: var(--muted); }
-.cursor { margin-left: 6px; color: var(--neon); animation: blink 1s steps(2) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.hero-meta { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
-.hero-meta span {
-  display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
-  border: 1px dashed var(--border); border-radius: 999px;
-  background: linear-gradient(180deg, rgba(0,255,136,0.06), rgba(0,255,136,0.02));
-  text-shadow: 0 0 6px rgba(0,255,136,0.35);
-}
+    <!-- Education -->
+    <section id="education" class="section container" data-aos="fade-up">
+      <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+      <ul class="timeline">
+        <li data-aos="fade-right" data-aos-delay="100">
+          <span class="year">2018–2020</span>
+          <div class="timeline-content">
+            <h3>Matric</h3>
+            <p>Alhamad Public High School</p>
+          </div>
+        </li>
+        <li data-aos="fade-right" data-aos-delay="200">
+          <span class="year">2022–2024</span>
+          <div class="timeline-content">
+            <h3>FSC</h3>
+            <p>Govt Graduate College Mailsi</p>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-/* Nav */
-.top-actions { margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.site-nav { display: flex; align-items: center; gap: 12px; position: relative; }
-.nav-toggle {
-  display: none; background: transparent; border: 1px solid var(--border); color: var(--text);
-  padding: 8px 10px; border-radius: 8px; cursor: pointer;
-}
-.nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
-.site-nav a {
-  color: var(--text); text-decoration: none; padding: 8px 12px; border-radius: 8px; position: relative; transition: 0.25s ease;
-}
-.site-nav a:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon); }
-.site-nav a::after {
-  content: ""; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--neon), transparent); opacity: 0; transform: scaleX(0.3); transition: 0.25s ease;
-}
-.site-nav a:hover::after { opacity: 1; transform: scaleX(1); }
+    <!-- Projects -->
+    <section id="projects" class="section container" data-aos="fade-up">
+      <h2><i class="fa-solid fa-terminal"></i> Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card" data-aos="flip-left" data-aos-delay="100">
+          <div class="card-content">
+            <div class="card-front">
+              <i class="fas fa-shield-alt"></i>
+              <h3>Network Security Analysis</h3>
+            </div>
+            <div class="card-back">
+              <p>Deployed baseline firewall rules, IDS signatures, and continuous monitoring. Reduced alert noise and hardened ingress/egress.</p>
+              <div class="card-tags"><span>Firewall</span><span>IDS</span><span>SIEM</span></div>
+            </div>
+          </div>
+        </article>
 
-/* Theme selector */
-.theme-switch-wrapper { display: flex; align-items: center; gap: 8px; }
-.theme-label { font-size: 12px; color: var(--muted); }
-#mode-select {
-  appearance: none; background: #0b120f; color: var(--text); border: 1px solid var(--border); border-radius: 8px;
-  padding: 6px 10px; box-shadow: var(--shadow); cursor: pointer;
-}
+        <article class="project-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="card-content">
+            <div class="card-front">
+              <i class="fas fa-lock"></i>
+              <h3>Password Manager</h3>
+            </div>
+            <div class="card-back">
+              <p>Local-encrypted vault with KDF hardening and 2FA. CLI utilities for copy-to-clipboard and audit checks.</p>
+              <div class="card-tags"><span>Python</span><span>Encryption</span><span>2FA</span></div>
+            </div>
+          </div>
+        </article>
 
-/* About */
-.about-content { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; }
-.about-text {
-  background: linear-gradient(180deg, rgba(0,255,136,0.05), rgba(0,255,136,0.02));
-  border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow);
-}
-.about-text p { margin: 0 0 12px; }
-.about-text ul { margin: 12px 0 0; padding-left: 16px; }
-.about-text li { margin: 6px 0; }
-.about-stats { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.stat-item {
-  padding: 16px; border-radius: 14px; border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(0,224,255,0.06), rgba(0,224,255,0.02)); box-shadow: var(--shadow);
-}
-.stat-item i { color: var(--neon-2); }
-.stat-item h3 { margin: 8px 0 6px; }
+        <article class="project-card" data-aos="flip-left" data-aos-delay="300">
+          <div class="card-content">
+            <div class="card-front">
+              <i class="fas fa-robot"></i>
+              <h3>Security Automation</h3>
+            </div>
+            <div class="card-back">
+              <p>Automated recon + vuln scanning pipeline with parsing and reporting. Improved detection and reduced toil.</p>
+              <div class="card-tags"><span>Python</span><span>Automation</span><span>DevSecOps</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-/* Timeline */
-.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
-.timeline .year {
-  display: inline-block; padding: 4px 10px; border-radius: 999px;
-  background: rgba(0,255,136,0.08); border:1px solid var(--border);
-  font-family: "VT323", monospace; color: var(--neon);
-}
-.timeline-content { margin-top: 8px; padding: 14px; border-radius: 12px; border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,255,136,0.03)); }
+    <!-- Certificates -->
+    <section id="certificates" class="section container" data-aos="fade-up">
+      <h2><i class="fa-solid fa-award"></i> Certificates</h2>
 
-/* Projects */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-.project-card { perspective: 1000px; }
-.card-content {
-  position: relative; transform-style: preserve-3d; transition: transform .6s; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--shadow);
-}
-.project-card:hover .card-content { transform: rotateY(180deg); }
-.card-front, .card-back { position: relative; backface-visibility: hidden; padding: 22px; border-radius: 14px; min-height: 160px; }
-.card-front {
-  background: linear-gradient(180deg, rgba(0,255,136,0.06), rgba(0,255,136,0.02));
-  display: grid; place-items: center; text-align: center; gap: 10px;
-}
-.card-front i { font-size: 28px; color: var(--neon); }
-.card-back {
-  position: absolute; inset: 0; transform: rotateY(180deg);
-  background: linear-gradient(180deg, rgba(0,224,255,0.08), rgba(0,224,255,0.03));
-}
-.card-tags { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-.card-tags span { border: 1px solid var(--border); color: var(--neon); padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+      <!-- Dynamic grid will be injected by JS using CERTS array -->
+      <div id="cert-grid" class="cert-grid" aria-live="polite"></div>
 
-/* Certificates */
-.cert-list { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 10px; }
-.cert-link {
-  color: var(--text); text-decoration: none; padding: 10px 12px; border-radius: 12px;
-  border: 1px dashed var(--border); display: flex; justify-content: space-between; align-items: center;
-  background: linear-gradient(180deg, rgba(0,255,136,0.05), rgba(0,255,136,0.02));
-}
-.cert-link::after { content: "View"; color: var(--neon); font-size: 12px; }
-.cert-link:hover { color: var(--neon); box-shadow: var(--shadow); }
+      <p class="cert-note">
+        Tip: Add more images to assets/images/ and then add entries in js/script.js → CERTS array.
+      </p>
+    </section>
 
-.certificate-card {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center;
-  border: 1px solid var(--border); border-radius: 14px; padding: 16px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,224,255,0.04)); box-shadow: var(--shadow);
-}
-.certificate-card img {
-  width: 100%; display: block; border-radius: 10px; border: 1px solid var(--border);
-  box-shadow: 0 0 20px rgba(0,255,136,0.25);
-}
-.cert-note { color: var(--muted); font-size: 12px; margin-top: 10px; }
+    <!-- Skills -->
+    <section id="skills" class="section container" data-aos="fade-up">
+      <h2><i class="fa-solid fa-screwdriver-wrench"></i> Skills</h2>
+      <div class="skills-container">
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
+          <div class="skill-progress" data-percent="85">
+            <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">85%</div>
+          </div>
+          <p class="skill-name">Network Security</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
+          <div class="skill-progress" data-percent="75">
+            <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">75%</div>
+          </div>
+          <p class="skill-name">Ethical Hacking</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
+          <div class="skill-progress" data-percent="70">
+            <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">70%</div>
+          </div>
+          <p class="skill-name">Python Scripting</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
+          <div class="skill-progress" data-percent="80">
+            <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">80%</div>
+          </div>
+          <p class="skill-name">Linux Command Line</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="500">
+          <div class="skill-progress" data-percent="65">
+            <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">65%</div>
+          </div>
+          <p class="skill-name">Photoshop</p>
+        </div>
+        <div class="skill-item" data-aos="zoom-in" data-aos-delay="600">
+          <div class="skill-progress" data-percent="90">
+            <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
+              <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="progress-circle-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="skill-percent">90%</div>
+          </div>
+          <p class="skill-name">MS Office</p>
+        </div>
+      </div>
+    </section>
 
-/* Skills */
-.skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px; }
-.skill-item {
-  text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 14px;
-  background: linear-gradient(180deg, rgba(0,255,136,0.05), rgba(0,255,136,0.02)); box-shadow: var(--shadow);
-}
-.progress-circle { transform: rotate(-90deg); }
-.progress-circle-bg { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 10; }
-.progress-circle-fill {
-  fill: none; stroke: var(--neon); stroke-width: 10; stroke-linecap: round; filter: drop-shadow(0 0 6px var(--neon));
-  stroke-dasharray: 314; stroke-dashoffset: 314; transition: stroke-dashoffset 1s ease;
-}
-.skill-percent { margin-top: 10px; color: var(--neon); text-shadow: 0 0 10px var(--neon); font-weight: 700; }
-.skill-name { margin: 6px 0 0; }
+    <!-- Contact -->
+    <section id="contact" class="section container" data-aos="fade-up">
+      <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
+      <div class="contact-container">
+        <div class="contact-info" data-aos="fade-right">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p><a href="mailto:abidhussain15658@gmail.com">abidhussain15658@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p><a href="tel:+923061565858">0306-156-5858</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Location</h3>
+              <p>Lahore Muslim Town, Moor Flyover</p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/abid-hussain-2a5414347/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Abid22110" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
 
-/* Contact */
-.contact-container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; }
-.contact-info, .contact-form {
-  border: 1px solid var(--border); border-radius: 14px; padding: 16px;
-  background: linear-gradient(180deg, rgba(0,224,255,0.06), rgba(0,224,255,0.02)); box-shadow: var(--shadow);
-}
-.contact-item { display: flex; gap: 12px; margin-bottom: 10px; }
-.contact-item i { color: var(--neon-2); font-size: 18px; margin-top: 4px; }
-.social-links { display: flex; gap: 10px; margin-top: 12px; }
-.social-icon {
-  display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center;
-  border-radius: 8px; color: var(--text); text-decoration: none; border: 1px solid var(--border);
-  background: #0c1411; transition: 0.25s ease; box-shadow: var(--shadow);
-}
-.social-icon:hover { color: var(--neon); transform: translateY(-2px); }
+        <!-- Only message required -->
+        <form class="contact-form" data-aos="fade-left" id="contact-form">
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+          <p class="form-note">Opens Gmail compose to send directly to Abid’s email.</p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-.form-group { display: grid; gap: 6px; margin-bottom: 10px; }
-label { color: var(--muted); font-size: 14px; }
-input, textarea {
-  width: 100%; color: var(--text); background: #0c1411; border: 1px solid var(--border);
-  border-radius: 10px; padding: 10px 12px; outline: none;
-}
-input:focus, textarea:focus { border-color: var(--neon); box-shadow: 0 0 0 3px rgba(0,255,136,0.15); }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  color: #021108; background: var(--neon); border: none; border-radius: 10px;
-  padding: 10px 14px; cursor: pointer; font-weight: 700; text-decoration: none;
-  box-shadow: 0 0 12px rgba(0,255,136,0.5);
-}
-.btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-.form-note { margin-top: 8px; color: var(--muted); font-size: 12px; }
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>© 2025 Abid Hussain. All rights reserved.</p>
+          <p>Cybersecurity Expert & Digital Solutions Provider</p>
+        </div>
+        <div class="back-to-top">
+          <a href="#" id="scroll-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-/* Footer */
-.site-footer { border-top: 1px solid var(--border); background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,255,136,0.03)); padding: 28px 0 40px; }
-.footer-content { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.back-to-top a {
-  display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center;
-  border-radius: 10px; border: 1px solid var(--border); color: var(--text);
-}
-.back-to-top a:hover { color: var(--neon); }
+  <!-- Modal for Certificates -->
+  <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="cert-modal__inner">
+      <button class="cert-modal__close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="cert-title"></h3>
+      <img id="cert-image" src="" alt="Certificate image">
+    </div>
+  </div>
 
-/* Responsive */
-@media (max-width: 880px) {
-  .header-content { align-items: center; }
-  .about-content, .contact-container, .certificate-card { grid-template-columns: 1fr; }
-  .nav-toggle { display: inline-block; }
-  .nav-links {
-    display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0;
-    background: #07100c; border: 1px solid var(--border); padding: 10px; border-radius: 12px; z-index: 10;
-  }
-  .nav-links a { display: block; padding: 10px; }
-  .nav-links.open { display: grid; gap: 6px; }
-
-  /* Mobile avatar: center and circle already ensured */
-  .header-content { gap: 14px; }
-}
-
-/* Page performance: avoid layout jank */
-.section { content-visibility: auto; contain-intrinsic-size: 600px; }
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>
