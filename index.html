@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-mode="hacker">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Abid Hussain | Cybersecurity Expert & Ethical Hacker</title>
-  <meta name="description" content="Abid Hussain — Cybersecurity Expert & Ethical Hacker. Network security, penetration testing, and security automation with a hacker-themed portfolio.">
+  <meta name="description" content="Abid Hussain — Cybersecurity Expert & Ethical Hacker. Network security, penetration testing, and security automation. Explore projects, skills, and certificates.">
   <meta name="author" content="Abid Hussain">
   <meta name="theme-color" content="#0a0f0d">
-  <link rel="icon" href="assets/images/untitle.jpg" type="image/jpeg">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <!-- Optional CSP (enable after verifying CDNs). Might require 'unsafe-inline' for libraries. -->
+  <!--
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
+                 style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline';
+                 img-src 'self' data:;
+                 font-src https://fonts.gstatic.com 'self';
+                 connect-src 'self';
+                 frame-ancestors 'none';
+                 upgrade-insecure-requests">
+  -->
 
-  <!-- Fonts: Hacker vibes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
@@ -20,21 +32,26 @@
 
   <!-- App CSS -->
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Favicon (use your untitle.jpg or replace with your logo) -->
+  <link rel="icon" href="assets/images/untitle.jpg" type="image/jpeg">
 </head>
 <body>
-  <!-- Matrix Rain Background -->
-  <canvas id="matrix"></canvas>
+  <!-- Matrix Rain (hacker mode only) -->
+  <canvas id="matrix" aria-hidden="true"></canvas>
 
   <header class="site-header">
     <div class="container">
       <div class="header-content" data-aos="fade-down">
         <div class="avatar-wrap">
-          <img src="assets/images/profile.jpeg" alt="Abid Hussain profile photo" loading="lazy">
-          <span class="avatar-glow"></span>
+          <img src="assets/images/profile.jpeg" alt="Abid Hussain profile photo" loading="eager" decoding="async" fetchpriority="high">
+          <span class="avatar-glow" aria-hidden="true"></span>
         </div>
         <div class="hero-text">
           <h1 class="glitch" data-text="Abid Hussain">Abid Hussain</h1>
-          <p class="tagline"><span id="typing-text">Cybersecurity Expert</span><span class="cursor">|</span></p>
+          <p class="tagline">
+            <span id="typing-text">Cybersecurity Expert</span><span class="cursor" aria-hidden="true">|</span>
+          </p>
           <div class="hero-meta">
             <span><i class="fa-solid fa-shield-halved"></i> Network Defense</span>
             <span><i class="fa-solid fa-bug"></i> PenTesting</span>
@@ -46,33 +63,32 @@
       <div class="top-actions">
         <nav class="site-nav">
           <button class="nav-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
-          <div class="nav-links">
+          <div class="nav-links" role="navigation" aria-label="Primary">
             <a href="#about">About</a>
             <a href="#education">Education</a>
             <a href="#projects">Projects</a>
-            <a href="#certificate">Certificate</a>
+            <a href="#certificate">Certificates</a>
             <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
 
-        <div class="theme-switch-wrapper" title="Toggle theme">
-          <label class="theme-switch" for="theme-checkbox">
-            <input type="checkbox" id="theme-checkbox" />
-            <span class="slider round"></span>
-            <span class="theme-label">Neon</span>
-          </label>
+        <div class="theme-switch-wrapper">
+          <label for="mode-select" class="theme-label">Theme</label>
+          <select id="mode-select" aria-label="Theme mode">
+            <option value="hacker" selected>Hacker</option>
+            <option value="clean">Clean Dark</option>
+          </select>
         </div>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- About -->
     <section id="about" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-user-secret"></i> About Me</h2>
       <div class="about-content">
-        <div class="about-text">
+        <div class="about-text" style="content-visibility:auto; contain-intrinsic-size: 500px;">
           <p>I’m Abid Hussain, a cybersecurity practitioner focused on building and defending resilient systems. With a foundation in computer basics (Pitman Training CPD), I work across network security, ethical hacking, and security automation to reduce risk and strengthen defenses.</p>
           <p>I combine blue team discipline with red team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
           <ul class="about-highlights">
@@ -101,7 +117,6 @@
       </div>
     </section>
 
-    <!-- Education -->
     <section id="education" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
       <ul class="timeline">
@@ -122,7 +137,6 @@
       </ul>
     </section>
 
-    <!-- Projects -->
     <section id="projects" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-terminal"></i> Projects</h2>
       <div class="projects-grid">
@@ -134,9 +148,7 @@
             </div>
             <div class="card-back">
               <p>Deployed baseline firewall rules, IDS signatures, and network monitoring for a small-business stack. Reduced alert noise and hardened ingress/egress.</p>
-              <div class="card-tags">
-                <span>Firewall</span><span>IDS</span><span>SIEM</span>
-              </div>
+              <div class="card-tags"><span>Firewall</span><span>IDS</span><span>SIEM</span></div>
             </div>
           </div>
         </article>
@@ -148,10 +160,8 @@
               <h3>Password Manager</h3>
             </div>
             <div class="card-back">
-              <p>Secure password vault with local encryption, KDF hardening, and 2FA support. CLI utilities for quick copy-to-clipboard and audit checks.</p>
-              <div class="card-tags">
-                <span>Python</span><span>Encryption</span><span>2FA</span>
-              </div>
+              <p>Secure password vault with local encryption, KDF hardening, and 2FA support. CLI utilities for copy-to-clipboard and audit checks.</p>
+              <div class="card-tags"><span>Python</span><span>Encryption</span><span>2FA</span></div>
             </div>
           </div>
         </article>
@@ -163,21 +173,39 @@
               <h3>Security Automation</h3>
             </div>
             <div class="card-back">
-              <p>Automated recon + vuln scanning pipeline with parsing, deduplication, and reporting. Reduced manual triage and improved mean-time-to-detect.</p>
-              <div class="card-tags">
-                <span>Python</span><span>Automation</span><span>DevSecOps</span>
-              </div>
+              <p>Automated recon + vuln scanning pipeline with parsing, deduplication, and reporting. Improved MTTR and decreased toil.</p>
+              <div class="card-tags"><span>Python</span><span>Automation</span><span>DevSecOps</span></div>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- Certificate -->
     <section id="certificate" class="section container" data-aos="fade-up">
-      <h2><i class="fa-solid fa-award"></i> Certificate</h2>
+      <h2><i class="fa-solid fa-award"></i> Certificates</h2>
+
+      <!-- Click a name below to open that certificate -->
+      <ul class="cert-list">
+        <li>
+          <a class="cert-link" data-name="Pitman Training — CPD (Computer Basics)" href="assets/images/certificate.jpeg" target="_blank" rel="noopener noreferrer">
+            Pitman Training — CPD (Computer Basics)
+          </a>
+        </li>
+        <li>
+          <a class="cert-link" data-name="Basic Computer Course" href="assets/images/cert-basic-computer.jpeg" target="_blank" rel="noopener noreferrer">
+            Basic Computer Course
+          </a>
+        </li>
+        <li>
+          <a class="cert-link" data-name="Google Course" href="assets/images/cert-google-course.jpeg" target="_blank" rel="noopener noreferrer">
+            Google Course
+          </a>
+        </li>
+      </ul>
+
+      <!-- Optional featured preview card (shows the first certificate) -->
       <div class="certificate-card" data-aos="zoom-in">
-        <img src="assets/images/certificate.jpeg" alt="Pitman Training CPD certificate image" loading="lazy">
+        <img src="assets/images/certificate.jpeg" alt="Certificate preview: Pitman Training CPD" loading="lazy" decoding="async">
         <div class="cert-info">
           <p><strong>Provider:</strong> Pitman Training – Minhaj University Lahore</p>
           <p><strong>CPD Hours:</strong> 20</p>
@@ -186,9 +214,12 @@
           <a class="btn" href="assets/images/certificate.jpeg" target="_blank" rel="noopener">View Certificate</a>
         </div>
       </div>
+
+      <p class="cert-note">Tip: Upload more certificates at:
+        assets/images/cert-basic-computer.jpeg and assets/images/cert-google-course.jpeg
+      </p>
     </section>
 
-    <!-- Skills -->
     <section id="skills" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-screwdriver-wrench"></i> Skills</h2>
       <div class="skills-container">
@@ -202,7 +233,6 @@
           </div>
           <p class="skill-name">Network Security</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
           <div class="skill-progress" data-percent="75">
             <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
@@ -211,9 +241,8 @@
             </svg>
             <div class="skill-percent">75%</div>
           </div>
-            <p class="skill-name">Ethical Hacking</p>
+          <p class="skill-name">Ethical Hacking</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
           <div class="skill-progress" data-percent="70">
             <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
@@ -224,7 +253,6 @@
           </div>
           <p class="skill-name">Python Scripting</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
           <div class="skill-progress" data-percent="80">
             <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
@@ -235,7 +263,6 @@
           </div>
           <p class="skill-name">Linux Command Line</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="500">
           <div class="skill-progress" data-percent="65">
             <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
@@ -246,7 +273,6 @@
           </div>
           <p class="skill-name">Photoshop</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="600">
           <div class="skill-progress" data-percent="90">
             <svg class="progress-circle" width="120" height="120" viewBox="0 0 120 120">
@@ -260,7 +286,6 @@
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
       <div class="contact-container">
@@ -287,13 +312,13 @@
             </div>
           </div>
           <div class="social-links">
-            <a href="https://linkedin.com/" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Abid22110" target="_blank" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://twitter.com/" target="_blank" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/abid-hussain-2a5414347/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Abid22110" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
           </div>
         </div>
-        
-        <form class="contact-form" data-aos="fade-left" id="contact-form" onsubmit="return false;">
+
+        <form class="contact-form" data-aos="fade-left" id="contact-form">
           <div class="form-group">
             <label for="name">Name</label>
             <input autocomplete="name" type="text" id="name" name="name" required>
@@ -307,7 +332,7 @@
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
           <button type="submit" class="btn">Send Message</button>
-          <p class="form-note">Demo form — wire it to your backend or a service like Formspree.</p>
+          <p class="form-note">Note: This opens your mail app to send directly to Abid’s Gmail. For auto-submit without mail app, connect Formspree/EmailJS in JS config.</p>
         </form>
       </div>
     </section>
@@ -329,6 +354,6 @@
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
