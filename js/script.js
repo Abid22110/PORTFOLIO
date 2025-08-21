@@ -1,42 +1,49 @@
-// AOS animations
-AOS.init({
-  duration: 700,
-  once: true,
-  offset: 80
-});
+// ============ AOS ============
+AOS.init({ duration: 650, once: true, offset: 80 });
 
-// Theme toggle: dark/neon by default
-(function themeInit() {
-  const checkbox = document.getElementById('theme-checkbox');
-  const saved = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  checkbox && (checkbox.checked = saved !== 'dark');
+// ============ MODE (Hacker / Clean) ============
+(function modeInit() {
+  const select = document.getElementById('mode-select');
+  const saved = localStorage.getItem('mode') || 'hacker';
+  document.documentElement.setAttribute('data-mode', saved);
+  if (select) select.value = saved;
 
-  checkbox && checkbox.addEventListener('change', () => {
-    const next = checkbox.checked ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+  select?.addEventListener('change', () => {
+    const val = select.value;
+    document.documentElement.setAttribute('data-mode', val);
+    localStorage.setItem('mode', val);
+    // Start/stop matrix depending on mode
+    window.MatrixRain && window.MatrixRain.toggle(val === 'hacker');
   });
 })();
 
-// Mobile nav toggle
+// ============ Mobile nav toggle + fix anchors ============
 (function navToggle() {
   const btn = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   if (!btn || !links) return;
+
   btn.addEventListener('click', () => links.classList.toggle('open'));
+
+  // Close menu on nav link click + smooth anchor handling
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+    });
+  });
+
   document.addEventListener('click', (e) => {
     if (!links.contains(e.target) && !btn.contains(e.target)) links.classList.remove('open');
   });
 })();
 
-// Smooth scroll to top
+// ============ Back to top ============
 document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   e.preventDefault();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Typing effect for tagline
+// ============ Typing effect ============
 (function typingEffect() {
   const el = document.getElementById('typing-text');
   const cursor = document.querySelector('.cursor');
@@ -53,20 +60,20 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   function tick() {
     const text = lines[idx];
     pos += dir;
-    el.textContent = text.slice(0, pos);
+    el.textContent = text.slice(0, Math.max(0, Math.min(pos, text.length)));
 
-    if (pos === text.length + 12) dir = -1;            // hold
-    if (pos === 0) { dir = 1; idx = (idx + 1) % lines.length; }
+    // hold after full
+    if (pos >= text.length + 10) dir = -1;
+    if (pos <= 0) { dir = 1; idx = (idx + 1) % lines.length; }
 
     setTimeout(tick, dir > 0 ? 80 : 40);
   }
   tick();
 
-  // Blink cursor always
   if (cursor) setInterval(() => cursor.classList.toggle('hidden'), 500);
 })();
 
-// Animate radial skill circles when visible
+// ============ Skill ring animation on view ============
 (function skillsProgress() {
   const items = document.querySelectorAll('.skill-progress');
   if (!items.length) return;
@@ -77,7 +84,7 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
       const wrap = e.target;
       const percent = parseInt(wrap.getAttribute('data-percent') || '0', 10);
       const circle = wrap.querySelector('.progress-circle-fill');
-      const max = 2 * Math.PI * 50; // r = 50
+      const max = 2 * Math.PI * 50; // r=50
       circle.style.strokeDashoffset = String(max - (percent / 100) * max);
       io.unobserve(wrap);
     });
@@ -86,29 +93,42 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
   items.forEach(i => io.observe(i));
 })();
 
-// Matrix rain background
+// ============ Matrix rain (hacker mode only) ============
 (function matrixRain() {
   const canvas = document.getElementById('matrix');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  let raf = null;
 
   let w, h, cols, drops;
+  let fps = 42, now, then = performance.now(), interval = 1000 / fps, delta;
+
   const fontSize = 16;
   const chars = '01$#@*&%{}[]<>/\\|+=-_.';
 
   function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    cols = Math.floor(w / fontSize);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = canvas.width = Math.floor(window.innerWidth * dpr);
+    h = canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    cols = Math.floor(window.innerWidth / fontSize);
     drops = Array(cols).fill(0);
   }
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', resize, { passive: true });
   resize();
 
-  function draw() {
-    // Fade the canvas
+  function loop(timestamp) {
+    raf = requestAnimationFrame(loop);
+    now = timestamp;
+    delta = now - then;
+    if (delta < interval) return; // throttle
+    then = now - (delta % interval);
+
     ctx.fillStyle = 'rgba(10,15,13,0.14)';
-    ctx.fillRect(0, 0, w, h);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = '#00ff88';
     ctx.font = `${fontSize}px "Share Tech Mono", monospace`;
@@ -120,41 +140,82 @@ document.getElementById('scroll-top')?.addEventListener('click', (e) => {
 
       ctx.fillText(text, x, y);
 
-      // Reset
-      if (y > h && Math.random() > 0.975) drops[i] = 0;
+      if (y > window.innerHeight && Math.random() > 0.975) drops[i] = 0;
       else drops[i]++;
     }
-
-    requestAnimationFrame(draw);
   }
-  draw();
+
+  function start() {
+    if (!raf) raf = requestAnimationFrame(loop);
+    canvas.style.display = 'block';
+  }
+  function stop() {
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+    canvas.style.display = 'none';
+  }
+
+  // API
+  window.MatrixRain = {
+    toggle: (on) => on ? start() : stop()
+  };
+
+  // Start if mode is hacker
+  const mode = document.documentElement.getAttribute('data-mode');
+  if (mode === 'hacker') start();
 })();
 
-/* ===========================
-   SEND MESSAGE -> GMAIL (mailto)
-   =========================== */
-(function contactMailto() {
+// ============ Contact: send to Gmail (mailto) or Formspree ============
+(function contactHandler() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  // Yahan apna Gmail likhen (agar change karna ho)
+  // Config
+  const CONTACT_MODE = 'mailto'; // 'mailto' | 'formspree'
   const TO = 'abidhussain15658@gmail.com';
+  const FORMSPREE_ENDPOINT = ''; // e.g., "https://formspree.io/f/xxxxx"
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = (document.getElementById('name')?.value || '').trim();
     const email = (document.getElementById('email')?.value || '').trim();
     const message = (document.getElementById('message')?.value || '').trim();
 
-    const subject = encodeURIComponent(`Portfolio Message from ${name || 'Visitor'}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
+    if (CONTACT_MODE === 'formspree' && FORMSPREE_ENDPOINT) {
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          alert('Message sent successfully!');
+          form.reset();
+        } else {
+          throw new Error('Failed to send');
+        }
+      } catch (err) {
+        alert('Failed to send via form service. Falling back to email.');
+        openMailto();
+      }
+      return;
+    }
 
-    // Gmail/mail client compose khulega
-    window.location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
+    // Default: open mail app with pre-filled details
+    openMailto();
 
-    // Optional: form clear
-    form.reset();
+    function openMailto() {
+      const subject = encodeURIComponent(`Portfolio Message from ${name || 'Visitor'}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      window.location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
+      form.reset();
+    }
+  });
+})();
+
+// ============ External links security ============
+(function externalLinksSafe() {
+  document.querySelectorAll('a[target="_blank"]').forEach(a => {
+    a.setAttribute('rel', 'noopener noreferrer');
   });
 })();
