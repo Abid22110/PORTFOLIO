@@ -8,27 +8,15 @@
   <meta name="author" content="Abid Hussain">
   <meta name="theme-color" content="#0a0f0d">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-  <!-- AOS + Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-  <!-- App CSS -->
   <link rel="stylesheet" href="css/styles.css">
-
-  <!-- Favicon -->
   <link rel="icon" href="assets/images/untitle.jpg" type="image/jpeg">
-
-  <!-- EmailJS (enable if using option A) -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
 </head>
 <body>
-  <!-- Matrix Rain -->
   <canvas id="matrix" aria-hidden="true"></canvas>
 
   <header class="site-header">
@@ -53,9 +41,12 @@
 
       <div class="top-actions">
         <nav class="site-nav">
-          <button class="nav-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
+          <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
           <div class="nav-drawer" aria-hidden="true">
-            <button class="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            <div class="drawer-head">
+              <h3>Menu</h3>
+              <button class="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            </div>
             <ul class="drawer-links">
               <li><a href="#about">Home</a></li>
               <li><a href="#about">About</a></li>
@@ -65,14 +56,8 @@
               <li><a href="#skills">Skills</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
-
-            <!-- Owner Upload Panel (Not Persistent) -->
-            <div class="owner-upload">
-              <h4><i class="fa-solid fa-cloud-arrow-up"></i> Add Certificate (Preview Only)</h4>
-              <input type="text" id="certName" placeholder="Certificate Name">
-              <input type="file" id="certFile" accept="image/*">
-              <button id="addCertBtn" class="btn btn-small">Add</button>
-              <p class="mini-note">Note: Yeh sirf iss session me dikhega (save nahi hoga).</p>
+            <div class="drawer-footer">
+              <p>© 2025 Abid</p>
             </div>
           </div>
           <div class="nav-overlay" aria-hidden="true"></div>
@@ -86,30 +71,30 @@
     <section id="about" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-user-secret"></i> About Me</h2>
       <div class="about-content">
-        <div class="about-text" style="content-visibility:auto; contain-intrinsic-size: 520px;">
+        <div class="about-text">
           <p>I’m Abid Hussain, a cybersecurity practitioner focused on building and defending resilient systems. With a foundation in computer basics (Pitman Training CPD), I work across network security, ethical hacking, and security automation to reduce risk and strengthen defenses.</p>
           <p>I blend blue-team discipline with red-team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
           <ul class="about-highlights">
-            <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, secure network segmentation</li>
-            <li><i class="fa-regular fa-circle-check"></i> Web app recon and vuln scanning with automation</li>
-            <li><i class="fa-regular fa-circle-check"></i> Python scripts for log parsing, IOC enrichment, faster alerting</li>
+            <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, secure segmentation</li>
+            <li><i class="fa-regular fa-circle-check"></i> Recon + vuln scanning automation</li>
+            <li><i class="fa-regular fa-circle-check"></i> Python tooling for faster detection</li>
           </ul>
         </div>
         <div class="about-stats">
           <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
             <i class="fas fa-shield-alt"></i>
             <h3>Network Security</h3>
-            <p>Firewall Configuration & Monitoring</p>
+            <p>Firewall Config & Monitoring</p>
           </div>
           <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
             <i class="fas fa-bug"></i>
-            <h3>Penetration Testing</h3>
-            <p>Vulnerability Assessment</p>
+            <h3>PenTesting</h3>
+            <p>Web & Infra Assessment</p>
           </div>
-          <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+            <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
             <i class="fas fa-code"></i>
-            <h3>Security Automation</h3>
-            <p>Python Scripting & Tools</p>
+            <h3>Automation</h3>
+            <p>Python Security Scripts</p>
           </div>
         </div>
       </div>
@@ -135,10 +120,10 @@
         </li>
         <li data-aos="fade-right" data-aos-delay="220">
           <span class="year">2022–2024</span>
-            <div class="timeline-content">
-              <h3>FSC</h3>
-              <p>Govt Graduate College Mailsi</p>
-            </div>
+          <div class="timeline-content">
+            <h3>FSC</h3>
+            <p>Govt Graduate College Mailsi</p>
+          </div>
         </li>
       </ul>
     </section>
@@ -154,12 +139,11 @@
               <h3>Network Security Analysis</h3>
             </div>
             <div class="card-back">
-              <p>Deployed baseline firewall rules, IDS signatures, and continuous monitoring. Reduced alert noise and hardened ingress/egress.</p>
+              <p>Baseline firewall rules, IDS signature tuning and continuous monitoring reducing noisy alerts.</p>
               <div class="card-tags"><span>Firewall</span><span>IDS</span><span>SIEM</span></div>
             </div>
           </div>
         </article>
-
         <article class="project-card" data-aos="flip-left" data-aos-delay="200">
           <div class="card-content">
             <div class="card-front">
@@ -167,12 +151,11 @@
               <h3>Password Manager</h3>
             </div>
             <div class="card-back">
-              <p>Local-encrypted vault with KDF hardening and 2FA. CLI utilities for copy-to-clipboard and audit checks.</p>
+              <p>Local encrypted vault with hardened KDF + optional 2FA and audit helper scripts.</p>
               <div class="card-tags"><span>Python</span><span>Encryption</span><span>2FA</span></div>
             </div>
           </div>
         </article>
-
         <article class="project-card" data-aos="flip-left" data-aos-delay="300">
           <div class="card-content">
             <div class="card-front">
@@ -180,7 +163,7 @@
               <h3>Security Automation</h3>
             </div>
             <div class="card-back">
-              <p>Automated recon + vuln scanning pipeline with parsing and reporting. Improved detection and reduced toil.</p>
+              <p>Recon + vuln scan pipeline with parsing, dedupe and structured reports for faster triage.</p>
               <div class="card-tags"><span>Python</span><span>Automation</span><span>DevSecOps</span></div>
             </div>
           </div>
@@ -191,12 +174,7 @@
     <!-- Certificates -->
     <section id="certificates" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-award"></i> Certificates</h2>
-      <ul class="cert-list" id="certList">
-        <!-- Populated by JS CERTS array -->
-      </ul>
-      <p class="cert-footnote">
-        Note: Cisco certificate path must be assets/images/course.jpg (case-sensitive). Agar load na ho to ensure file commit & 5–10 sec cache refresh (Ctrl+F5).
-      </p>
+      <ul class="cert-list" id="certList"></ul>
     </section>
 
     <!-- Skills -->
@@ -204,7 +182,7 @@
       <h2><i class="fa-solid fa-screwdriver-wrench"></i> Skills</h2>
       <div class="skills-container">
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
-          <div class="skill-progress" data-percent="85" data-name="Network Security">
+          <div class="skill-progress" data-percent="85">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
               <defs><filter id="neonGlow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#00ff88"/></filter></defs>
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
@@ -216,7 +194,7 @@
           <p class="skill-name">Network Security</p>
         </div>
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
-          <div class="skill-progress" data-percent="75" data-name="Ethical Hacking">
+          <div class="skill-progress" data-percent="75">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
@@ -227,7 +205,7 @@
           <p class="skill-name">Ethical Hacking</p>
         </div>
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
-          <div class="skill-progress" data-percent="70" data-name="Python Scripting">
+          <div class="skill-progress" data-percent="70">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
@@ -238,7 +216,7 @@
           <p class="skill-name">Python Scripting</p>
         </div>
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
-          <div class="skill-progress" data-percent="80" data-name="Linux CLI">
+          <div class="skill-progress" data-percent="80">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
@@ -289,7 +267,7 @@
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
           </div>
-            <div class="form-group">
+          <div class="form-group">
             <label for="email">Your Email</label>
             <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
           </div>
@@ -297,11 +275,8 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
           </div>
-          <input type="text" id="hp_field" name="hp_field" autocomplete="off" style="position:absolute;left:-5000px;opacity:0;" tabindex="-1">
           <button type="submit" class="btn">Send Message</button>
-          <p class="form-note">
-            Direct background send (EmailJS / Formspree) ya fallback Gmail compose. Configure in js/script.js.
-          </p>
+          <p class="form-note">Opens Gmail with your message ready. Just press send.</p>
         </form>
       </div>
     </section>
@@ -321,8 +296,7 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
   <script src="js/script.js" defer></script>
 </body>
 </html>
