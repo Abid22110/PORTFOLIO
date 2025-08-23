@@ -23,9 +23,12 @@
 
   <!-- Favicon -->
   <link rel="icon" href="assets/images/untitle.jpg" type="image/jpeg">
+
+  <!-- EmailJS (enable if using option A) -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
 </head>
 <body>
-  <!-- Matrix Rain (Hacker theme background) -->
+  <!-- Matrix Rain -->
   <canvas id="matrix" aria-hidden="true"></canvas>
 
   <header class="site-header">
@@ -51,20 +54,31 @@
       <div class="top-actions">
         <nav class="site-nav">
           <button class="nav-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
-          <div class="nav-links" role="navigation" aria-label="Primary">
-            <a href="#about">Home</a>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#projects">Projects</a>
-            <a href="#certificates">Certificates</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
+          <div class="nav-drawer" aria-hidden="true">
+            <button class="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            <ul class="drawer-links">
+              <li><a href="#about">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#education">Education</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#certificates">Certificates</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- Owner Upload Panel (Not Persistent) -->
+            <div class="owner-upload">
+              <h4><i class="fa-solid fa-cloud-arrow-up"></i> Add Certificate (Preview Only)</h4>
+              <input type="text" id="certName" placeholder="Certificate Name">
+              <input type="file" id="certFile" accept="image/*">
+              <button id="addCertBtn" class="btn btn-small">Add</button>
+              <p class="mini-note">Note: Yeh sirf iss session me dikhega (save nahi hoga).</p>
+            </div>
           </div>
+          <div class="nav-overlay" aria-hidden="true"></div>
         </nav>
       </div>
     </div>
-    <!-- Overlay for mobile nav to avoid background mixing -->
-    <div class="nav-overlay" aria-hidden="true"></div>
   </header>
 
   <main>
@@ -121,10 +135,10 @@
         </li>
         <li data-aos="fade-right" data-aos-delay="220">
           <span class="year">2022–2024</span>
-          <div class="timeline-content">
-            <h3>FSC</h3>
-            <p>Govt Graduate College Mailsi</p>
-          </div>
+            <div class="timeline-content">
+              <h3>FSC</h3>
+              <p>Govt Graduate College Mailsi</p>
+            </div>
         </li>
       </ul>
     </section>
@@ -174,26 +188,15 @@
       </div>
     </section>
 
-    <!-- Certificates: names list only -->
+    <!-- Certificates -->
     <section id="certificates" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-award"></i> Certificates</h2>
-      <ul class="cert-list">
-        <li>
-          <a class="cert-link" href="assets/images/certificate.jpeg" target="_blank" rel="noopener noreferrer">
-            Pitman Training — CPD (Computer Basics)
-          </a>
-        </li>
-        <li>
-          <a class="cert-link" href="assets/images/cert-basic-computer.jpeg" target="_blank" rel="noopener noreferrer">
-            Basic Computer Course
-          </a>
-        </li>
-        <li>
-          <a class="cert-link" href="assets/images/course.jpeg" target="_blank" rel="noopener noreferrer">
-            Cisco Course
-          </a>
-        </li>
+      <ul class="cert-list" id="certList">
+        <!-- Populated by JS CERTS array -->
       </ul>
+      <p class="cert-footnote">
+        Note: Cisco certificate path must be assets/images/course.jpg (case-sensitive). Agar load na ho to ensure file commit & 5–10 sec cache refresh (Ctrl+F5).
+      </p>
     </section>
 
     <!-- Skills -->
@@ -203,11 +206,7 @@
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
           <div class="skill-progress" data-percent="85" data-name="Network Security">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
-              <defs>
-                <filter id="neonGlow">
-                  <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#00ff88"/>
-                </filter>
-              </defs>
+              <defs><filter id="neonGlow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#00ff88"/></filter></defs>
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
               <circle class="progress-circle-fill" cx="70" cy="70" r="55" filter="url(#neonGlow)"></circle>
@@ -216,7 +215,6 @@
           </div>
           <p class="skill-name">Network Security</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
           <div class="skill-progress" data-percent="75" data-name="Ethical Hacking">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
@@ -228,7 +226,6 @@
           </div>
           <p class="skill-name">Ethical Hacking</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
           <div class="skill-progress" data-percent="70" data-name="Python Scripting">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
@@ -240,7 +237,6 @@
           </div>
           <p class="skill-name">Python Scripting</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
           <div class="skill-progress" data-percent="80" data-name="Linux CLI">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
@@ -288,22 +284,24 @@
           </div>
         </div>
 
-        <!-- Name + Email + Message -> direct Gmail compose -->
         <form class="contact-form" data-aos="fade-left" id="contact-form">
           <div class="form-group">
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
+            <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
           </div>
-          <div class="form-group">
+            <div class="form-group">
             <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
           </div>
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
           </div>
+          <input type="text" id="hp_field" name="hp_field" autocomplete="off" style="position:absolute;left:-5000px;opacity:0;" tabindex="-1">
           <button type="submit" class="btn">Send Message</button>
-          <p class="form-note">This opens Gmail compose to send directly to Abid’s email.</p>
+          <p class="form-note">
+            Direct background send (EmailJS / Formspree) ya fallback Gmail compose. Configure in js/script.js.
+          </p>
         </form>
       </div>
     </section>
