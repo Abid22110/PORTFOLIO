@@ -91,7 +91,7 @@
             <h3>PenTesting</h3>
             <p>Web & Infra Assessment</p>
           </div>
-            <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+          <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
             <i class="fas fa-code"></i>
             <h3>Automation</h3>
             <p>Python Security Scripts</p>
@@ -238,7 +238,9 @@
             <i class="fas fa-envelope"></i>
             <div>
               <h3>Email</h3>
-              <p><a href="mailto:abidhussain15658@gmail.com">abidhussain15658@gmail.com</a></p>
+              <p>
+                <a class="email-badge" href="mailto:abidhussain15658@gmail.com">abidhussain15658@gmail.com</a>
+              </p>
             </div>
           </div>
           <div class="contact-item">
@@ -262,22 +264,19 @@
           </div>
         </div>
 
-        <form class="contact-form" data-aos="fade-left" id="contact-form">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+        <!-- SIMPLE CONTACT INTERFACE -->
+        <div class="quick-mail" data-aos="fade-left">
+          <label for="quick-message">Optional Message (will auto-fill Gmail body)</label>
+          <textarea id="quick-message" placeholder="Type message (optional)..."></textarea>
+
+          <div class="mail-buttons">
+            <button id="gmail-btn" class="btn"><i class="fa-solid fa-envelope-open-text"></i> Gmail Compose</button>
+            <button id="mailto-btn" class="btn btn-outline"><i class="fa-solid fa-paper-plane"></i> Mail App</button>
+            <button id="copy-btn" class="btn btn-outline"><i class="fa-solid fa-copy"></i> Copy Email</button>
           </div>
-          <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
-          </div>
-          <button type="submit" class="btn">Send Message</button>
-          <p class="form-note">Opens Gmail with your message ready. Just press send.</p>
-        </form>
+          <p class="form-note small">Bas button dabao — Gmail compose khul jayega. Message optional hai.</p>
+          <div id="copy-toast" class="copy-toast" role="status" aria-live="polite">Copied!</div>
+        </div>
       </div>
     </section>
   </main>
