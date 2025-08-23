@@ -8,41 +8,60 @@
   <meta name="author" content="Abid Hussain">
   <meta name="theme-color" content="#0a0f0d">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-  <!-- AOS + Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-  <!-- App CSS -->
   <link rel="stylesheet" href="css/styles.css">
-
-  <!-- Favicon -->
   <link rel="icon" href="assets/images/untitle.jpg" type="image/jpeg">
-
-  <!-- (Optional) Preload critical images -->
   <link rel="preload" as="image" href="assets/images/profile.jpeg">
 </head>
 <body>
-  <!-- Matrix Rain (Hacker theme background) -->
   <canvas id="matrix" aria-hidden="true"></canvas>
 
   <header class="site-header">
     <div class="container">
-      <div class="header-content" data-aos="fade-down">
+      <div class="header-bar">
+        <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="brand">
+          <span class="brand-text glitch" data-text="Abid Hussain">Abid Hussain</span>
+        </div>
+      </div>
+
+      <!-- Drawer -->
+      <aside class="nav-drawer" aria-hidden="true">
+        <div class="drawer-head">
+          <h3>Menu</h3>
+          <button class="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="drawer-links">
+          <li><a href="#about">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="drawer-footer">
+          <div class="drawer-avatar">
+            <img src="assets/images/profile.jpeg" alt="Profile">
+          </div>
+          <p>© 2025 Abid</p>
+        </div>
+      </aside>
+      <div class="nav-overlay" aria-hidden="true"></div>
+
+      <!-- Hero (original hero kept here for large screens) -->
+      <div class="hero-wrapper" data-aos="fade-down">
         <div class="avatar-wrap">
           <img src="assets/images/profile.jpeg" alt="Abid Hussain profile photo" loading="eager" decoding="async" fetchpriority="high">
           <span class="avatar-glow" aria-hidden="true"></span>
         </div>
         <div class="hero-text">
-          <h1 class="glitch" data-text="Abid Hussain">Abid Hussain</h1>
-          <p class="tagline">
-            <span id="typing-text">Cybersecurity Expert</span><span class="cursor" aria-hidden="true">|</span>
-          </p>
+          <h1 class="glitch big" data-text="Abid Hussain">Abid Hussain</h1>
+          <p class="tagline"><span id="typing-text">Cybersecurity Expert</span><span class="cursor">|</span></p>
           <div class="hero-meta">
             <span class="chip"><i class="fa-solid fa-shield-halved"></i> Network Defense</span>
             <span class="chip"><i class="fa-solid fa-bug"></i> PenTesting</span>
@@ -50,24 +69,7 @@
           </div>
         </div>
       </div>
-
-      <div class="top-actions">
-        <nav class="site-nav">
-          <button class="nav-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
-          <div class="nav-links" role="navigation" aria-label="Primary">
-            <a href="#about">Home</a>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#projects">Projects</a>
-            <a href="#certificates">Certificates</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </nav>
-      </div>
     </div>
-    <!-- Overlay for mobile nav to avoid background mixing -->
-    <div class="nav-overlay" aria-hidden="true"></div>
   </header>
 
   <main>
@@ -75,13 +77,13 @@
     <section id="about" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-user-secret"></i> About Me</h2>
       <div class="about-content">
-        <div class="about-text" style="content-visibility:auto; contain-intrinsic-size: 520px;">
+        <div class="about-text">
           <p>I’m Abid Hussain, a cybersecurity practitioner focused on building and defending resilient systems. With a foundation in computer basics (Pitman Training CPD), I work across network security, ethical hacking, and security automation to reduce risk and strengthen defenses.</p>
-          <p>I blend blue-team discipline with red-team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
+            <p>I blend blue-team discipline with red-team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
           <ul class="about-highlights">
-            <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, secure network segmentation</li>
-            <li><i class="fa-regular fa-circle-check"></i> Web app recon and vuln scanning with automation</li>
-            <li><i class="fa-regular fa-circle-check"></i> Python scripts for log parsing, IOC enrichment, faster alerting</li>
+            <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, secure segmentation</li>
+            <li><i class="fa-regular fa-circle-check"></i> Automation for recon + scanning</li>
+            <li><i class="fa-regular fa-circle-check"></i> Python scripts for log parsing & IOC enrichment</li>
           </ul>
         </div>
         <div class="about-stats">
@@ -143,12 +145,11 @@
               <h3>Network Security Analysis</h3>
             </div>
             <div class="card-back">
-              <p>Deployed baseline firewall rules, IDS signatures, and continuous monitoring. Reduced alert noise and hardened ingress/egress.</p>
+              <p>Baseline firewall rules, tuned IDS signatures & continuous monitoring to reduce noise and harden networks.</p>
               <div class="card-tags"><span>Firewall</span><span>IDS</span><span>SIEM</span></div>
             </div>
           </div>
         </article>
-
         <article class="project-card" data-aos="flip-left" data-aos-delay="200">
           <div class="card-content">
             <div class="card-front">
@@ -156,12 +157,11 @@
               <h3>Password Manager</h3>
             </div>
             <div class="card-back">
-              <p>Local-encrypted vault with KDF hardening and 2FA. CLI utilities for copy-to-clipboard and audit checks.</p>
+              <p>Local encrypted vault with hardened KDF, optional 2FA & CLI helpers for copy & audit.</p>
               <div class="card-tags"><span>Python</span><span>Encryption</span><span>2FA</span></div>
             </div>
           </div>
         </article>
-
         <article class="project-card" data-aos="flip-left" data-aos-delay="300">
           <div class="card-content">
             <div class="card-front">
@@ -169,7 +169,7 @@
               <h3>Security Automation</h3>
             </div>
             <div class="card-back">
-              <p>Automated recon + vuln scanning pipeline with parsing and reporting. Improved detection and reduced toil.</p>
+              <p>Automated recon + vuln scanning pipeline with parsing & reporting to speed detection & triage.</p>
               <div class="card-tags"><span>Python</span><span>Automation</span><span>DevSecOps</span></div>
             </div>
           </div>
@@ -181,27 +181,10 @@
     <section id="certificates" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-award"></i> Certificates</h2>
       <ul class="cert-list">
-        <li>
-          <a class="cert-link" href="assets/images/certificate.jpeg" target="_blank" rel="noopener noreferrer">
-            Pitman Training — CPD (Computer Basics)
-          </a>
-        </li>
-        <li>
-          <a class="cert-link" href="assets/images/cert-basic-computer.jpeg" target="_blank" rel="noopener noreferrer">
-            Basic Computer Course
-          </a>
-        </li>
-        <li>
-          <a class="cert-link" href="assets/images/cert-google-course.jpeg" target="_blank" rel="noopener noreferrer">
-            Google Course
-          </a>
-        </li>
-        <li>
-          <a class="cert-link" href="assets/images/course.jpg" target="_blank" rel="noopener noreferrer">
-            Cisco Networking Course
-          </a>
-        </li>
-        <!-- (Add more certificates by duplicating an li and pointing to your asset path) -->
+        <li><a class="cert-link" href="assets/images/certificate.jpeg" target="_blank" rel="noopener noreferrer">Pitman Training — CPD (Computer Basics)</a></li>
+        <li><a class="cert-link" href="assets/images/cert-basic-computer.jpeg" target="_blank" rel="noopener noreferrer">Basic Computer Course</a></li>
+        <li><a class="cert-link" href="assets/images/cert-google-course.jpeg" target="_blank" rel="noopener noreferrer">Google Course</a></li>
+        <li><a class="cert-link" href="assets/images/course.jpg" target="_blank" rel="noopener noreferrer">Cisco Networking Course</a></li>
       </ul>
     </section>
 
@@ -210,13 +193,9 @@
       <h2><i class="fa-solid fa-screwdriver-wrench"></i> Skills</h2>
       <div class="skills-container">
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
-          <div class="skill-progress" data-percent="85" data-name="Network Security">
+          <div class="skill-progress" data-percent="85">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
-              <defs>
-                <filter id="neonGlow">
-                  <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#00ff88"/>
-                </filter>
-              </defs>
+              <defs><filter id="neonGlow"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#00ff88"/></filter></defs>
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
               <circle class="progress-circle-fill" cx="70" cy="70" r="55" filter="url(#neonGlow)"></circle>
@@ -225,9 +204,8 @@
           </div>
           <p class="skill-name">Network Security</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
-          <div class="skill-progress" data-percent="75" data-name="Ethical Hacking">
+          <div class="skill-progress" data-percent="75">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
@@ -237,9 +215,8 @@
           </div>
           <p class="skill-name">Ethical Hacking</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
-          <div class="skill-progress" data-percent="70" data-name="Python Scripting">
+          <div class="skill-progress" data-percent="70">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
@@ -249,9 +226,8 @@
           </div>
           <p class="skill-name">Python Scripting</p>
         </div>
-
         <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
-          <div class="skill-progress" data-percent="80" data-name="Linux CLI">
+          <div class="skill-progress" data-percent="80">
             <svg class="progress-circle" width="140" height="140" viewBox="0 0 140 140">
               <circle class="progress-orbit" cx="70" cy="70" r="58"></circle>
               <circle class="progress-circle-bg" cx="70" cy="70" r="55"></circle>
@@ -259,12 +235,12 @@
             </svg>
             <div class="skill-percent">80%</div>
           </div>
-          <p class="skill-name">Linux Command Line</p>
+          <p class="skill-name">Linux CLI</p>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact (Original Simple Form: Name + Email + Message -> Gmail compose) -->
     <section id="contact" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
       <div class="contact-container">
@@ -283,7 +259,7 @@
               <p><a href="tel:+923061565858">0306-156-5858</a></p>
             </div>
           </div>
-            <div class="contact-item">
+          <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
             <div>
               <h3>Location</h3>
@@ -297,22 +273,21 @@
           </div>
         </div>
 
-        <!-- Name + Email + Message -> direct Gmail compose -->
         <form class="contact-form" data-aos="fade-left" id="contact-form">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required>
           </div>
           <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            <label for="email">Your Gmail / Email</label>
+            <input type="email" id="email" name="email" placeholder="you@gmail.com" required>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
           </div>
           <button type="submit" class="btn">Send Message</button>
-          <p class="form-note">This opens Gmail compose to send directly to Abid’s email.</p>
+          <p class="form-note">Opens Gmail compose with your message. Just press send.</p>
         </form>
       </div>
     </section>
@@ -332,8 +307,7 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
   <script src="js/script.js" defer></script>
 </body>
 </html>
