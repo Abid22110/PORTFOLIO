@@ -21,69 +21,52 @@
   <canvas id="matrix" aria-hidden="true"></canvas>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand-area">
+    <div class="container">
+      <div class="header-bar">
         <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
-        <a href="#about" class="brand glitch" data-text="Abid Hussain">Abid Hussain</a>
+        <div class="brand">
+          <span class="brand-text glitch" data-text="Abid Hussain">Abid Hussain</span>
+        </div>
       </div>
 
-      <!-- Desktop Nav -->
-      <nav class="site-nav-desktop" aria-label="Primary">
-        <a href="#about">Home</a>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#projects">Projects</a>
-        <a href="#certificates">Certificates</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-
-    <!-- Mobile Drawer -->
-    <aside class="nav-drawer" aria-hidden="true">
-      <div class="drawer-head">
-        <div class="drawer-profile">
+      <!-- Drawer -->
+      <aside class="nav-drawer" aria-hidden="true">
+        <div class="drawer-head">
+          <h3>Menu</h3>
+          <button class="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="drawer-links">
+          <li><a href="#about">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="drawer-footer">
           <div class="drawer-avatar">
             <img src="assets/images/profile.jpeg" alt="Profile">
           </div>
-          <h3>Abid Hussain</h3>
-          <p class="drawer-tag">Cybersecurity</p>
+          <p>© 2025 Abid</p>
         </div>
-        <button class="drawer-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <ul class="drawer-links">
-        <li><a href="#about">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="drawer-footer">
-        <div class="drawer-social">
-          <a href="https://www.linkedin.com/in/abid-hussain-2a5414347/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/Abid22110" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>© 2025 Abid</p>
-      </div>
-    </aside>
-    <div class="nav-overlay" aria-hidden="true"></div>
+      </aside>
+      <div class="nav-overlay" aria-hidden="true"></div>
 
-    <!-- Hero -->
-    <div class="container hero-flex" data-aos="fade-down">
-      <div class="avatar-wrap">
-        <img src="assets/images/profile.jpeg" alt="Abid Hussain photo" loading="eager" decoding="async" fetchpriority="high">
-        <span class="avatar-glow" aria-hidden="true"></span>
-      </div>
-      <div class="hero-text">
-        <h1 class="hero-name glitch" data-text="Abid Hussain">Abid Hussain</h1>
-        <p class="tagline"><span id="typing-text">Cybersecurity Expert</span><span class="cursor">|</span></p>
-        <div class="hero-meta">
-          <span class="chip"><i class="fa-solid fa-shield-halved"></i> Network Defense</span>
-          <span class="chip"><i class="fa-solid fa-bug"></i> PenTesting</span>
-          <span class="chip"><i class="fa-solid fa-code"></i> Automation</span>
+      <!-- Hero (original hero kept here for large screens) -->
+      <div class="hero-wrapper" data-aos="fade-down">
+        <div class="avatar-wrap">
+          <img src="assets/images/profile.jpeg" alt="Abid Hussain profile photo" loading="eager" decoding="async" fetchpriority="high">
+          <span class="avatar-glow" aria-hidden="true"></span>
+        </div>
+        <div class="hero-text">
+          <h1 class="glitch big" data-text="Abid Hussain">Abid Hussain</h1>
+          <p class="tagline"><span id="typing-text">Cybersecurity Expert</span><span class="cursor">|</span></p>
+          <div class="hero-meta">
+            <span class="chip"><i class="fa-solid fa-shield-halved"></i> Network Defense</span>
+            <span class="chip"><i class="fa-solid fa-bug"></i> PenTesting</span>
+            <span class="chip"><i class="fa-solid fa-code"></i> Automation</span>
+          </div>
         </div>
       </div>
     </div>
@@ -96,10 +79,10 @@
       <div class="about-content">
         <div class="about-text">
           <p>I’m Abid Hussain, a cybersecurity practitioner focused on building and defending resilient systems. With a foundation in computer basics (Pitman Training CPD), I work across network security, ethical hacking, and security automation to reduce risk and strengthen defenses.</p>
-          <p>I blend blue-team discipline with red-team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
+            <p>I blend blue-team discipline with red-team creativity—threat modeling, firewall hardening, vulnerability assessments, and Python tooling to automate repetitive tasks. Always learning. Always shipping. Always secure.</p>
           <ul class="about-highlights">
-            <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, segmentation</li>
-            <li><i class="fa-regular fa-circle-check"></i> Automated recon & vuln scanning</li>
+            <li><i class="fa-regular fa-circle-check"></i> Firewall baselining, IDS tuning, secure segmentation</li>
+            <li><i class="fa-regular fa-circle-check"></i> Automation for recon + scanning</li>
             <li><i class="fa-regular fa-circle-check"></i> Python scripts for log parsing & IOC enrichment</li>
           </ul>
         </div>
@@ -117,7 +100,7 @@
           <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
             <i class="fas fa-code"></i>
             <h3>Security Automation</h3>
-            <p>Python Tooling</p>
+            <p>Python Scripting & Tools</p>
           </div>
         </div>
       </div>
@@ -162,7 +145,7 @@
               <h3>Network Security Analysis</h3>
             </div>
             <div class="card-back">
-              <p>Baseline firewall rules, tuned IDS signatures & monitoring reducing false positives and strengthening defenses.</p>
+              <p>Baseline firewall rules, tuned IDS signatures & continuous monitoring to reduce noise and harden networks.</p>
               <div class="card-tags"><span>Firewall</span><span>IDS</span><span>SIEM</span></div>
             </div>
           </div>
@@ -174,7 +157,7 @@
               <h3>Password Manager</h3>
             </div>
             <div class="card-back">
-              <p>Encrypted local vault with hardened KDF and optional 2FA + CLI helpers for secure workflows.</p>
+              <p>Local encrypted vault with hardened KDF, optional 2FA & CLI helpers for copy & audit.</p>
               <div class="card-tags"><span>Python</span><span>Encryption</span><span>2FA</span></div>
             </div>
           </div>
@@ -186,7 +169,7 @@
               <h3>Security Automation</h3>
             </div>
             <div class="card-back">
-              <p>Automated recon + vulnerability scanning pipeline with parsing, dedupe & reporting for faster triage.</p>
+              <p>Automated recon + vuln scanning pipeline with parsing & reporting to speed detection & triage.</p>
               <div class="card-tags"><span>Python</span><span>Automation</span><span>DevSecOps</span></div>
             </div>
           </div>
@@ -257,7 +240,7 @@
       </div>
     </section>
 
-    <!-- Contact (Simple original flow) -->
+    <!-- Contact (Original Simple Form: Name + Email + Message -> Gmail compose) -->
     <section id="contact" class="section container" data-aos="fade-up">
       <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
       <div class="contact-container">
@@ -293,22 +276,18 @@
         <form class="contact-form" data-aos="fade-left" id="contact-form">
           <div class="form-group">
             <label for="name">Your Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
           </div>
           <div class="form-group">
             <label for="email">Your Gmail / Email</label>
-            <input id="email" name="email" type="email" placeholder="you@gmail.com" required>
+            <input type="email" id="email" name="email" placeholder="you@gmail.com" required>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="6" placeholder="Type your message..." required></textarea>
           </div>
           <button type="submit" class="btn">Send Message</button>
-          <div class="alt-mail">
-            <button type="button" id="open-gmail" class="btn btn-alt"><i class="fa-brands fa-google"></i> Gmail Compose</button>
-            <button type="button" id="open-mailto" class="btn btn-alt"><i class="fa-solid fa-envelope-open"></i> Mail App</button>
-          </div>
-          <p class="form-note">Fill and click Send. If popup block ho jaye, neeche Gmail Compose button use kar lo.</p>
+          <p class="form-note">Opens Gmail compose with your message. Just press send.</p>
         </form>
       </div>
     </section>
